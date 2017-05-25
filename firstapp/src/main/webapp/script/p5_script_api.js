@@ -3,22 +3,34 @@ $(document).ready(function(){
 	
 	initPage();
 	
-	
+	getIP();
 	
 })
 
 
 
 function initPage(){
-	
-	$.getJSON("http://ip-api.com/json/?callback=?", function(data) {
-        var table_body = "";
-        $.each(data, function(k, v) {
-            table_body += "<tr><td>" + k + "</td><td><b>" + v + "</b></td></tr>";
-        });
-        $("#GeoResults").html(table_body);
-    });
+
+	 $.getJSON("http://ip-api.com/json/?callback=?", function(data){
+		 $("#landcode").append(data.countryCode);
+		 $("#land").append(data.country);
+		 $("#regio").append(data.region);
+		 $("#stad").append(data.city);
+		 $("#postcode").append(data.zip);
+		 $("#lat").append(data.lat);
+		 $("#lon").append(data.lon);
+		 $("#ip").append(data.query);
+
+
+		 
+	 },'json');
 
 	
-	
+	 
+	 
+	 
 }
+
+function getIP(json) {
+    alert("My public IP address is: ", json.ip);
+  }

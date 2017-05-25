@@ -17,13 +17,33 @@ body{
 	background-color: #A97D7D;
 	color: white;
 	font-size: 25px;
-	borderf-radius: 5px;
+	border-radius: 5px;
 }
 
 .content{
 	margin-left: 40px;
 	width: 98%;
 	height: 28vh;
+}
+
+.left{
+	padding-top: 3em;
+	float: left;
+	width: 20%;
+	height:25vh;
+	text-align: left;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.right{
+	padding-top: 3em;
+	float: left;
+	width: 20%;
+	height: 25vh;
+	text-align: left;
+	font-size: 20px;
+	line-height: 30px;
 }
 
 .section1{
