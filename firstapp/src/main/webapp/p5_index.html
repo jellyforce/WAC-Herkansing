@@ -37,34 +37,61 @@
     
     </section>
     
-      
+    
       
         <section class="section2">
     
-	    <div class="titel">Het weer in ...</div>
+	    <div class="titel">Het weer in <label id="location"></label></div>
 	    <div class="content">
-	    	
+	    <div class="left">   
+		    	<label>Temperatuur</label><br/>
+		    	<label>Luchvochtigheid</label><br/>
+		    	<label>Windsnelheid</label><br/>
+		    	<label>Windrichting</label><br/>
+		    	<label>Zonsopgang</label><br/>
+		    	<label>Zonsondergang</label><br/>
+	    	</div>
+	    	<div class="right">
+		    	<label id="temperatuur"></label><br/>
+		    	<label id="luchvochtigheid"></label><br/>
+		    	<label id="windsnelheid"></label><br/>
+		    	<label id="windrichting"></label><br/>
+		    	<label id="zonsopgang"></label><br/>
+		    	<label id="zonsondergang"></label><br/>
+	    	</div>  	
 	    </div>   
-    
     </section>
     
     
         <section class="section3">
     
 	    <div class="titel">Beschikbare vakantiebestemmingen</div>
-	    <div class="content">
- 
+	    <div >
+ 			<table id="countrylist" style="width: 100%; background-color: #D3D3D3" >
+	 			<tr>			
+	 				<th>Land</th>
+	 				<th>Hoofdstad</th>
+	 				<th>Regio</th>
+	 				<th>Oppervlakte</th>
+	 				<th>Inwoners</th>
+	 			</tr>
+ 			</table>
 	    </div>   
     
     </section>  
-        
-        
-</body>
-
+    
+    
+    
+    
 	<!-- script -->
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<script src="script/p5_script_api.js"></script>
+
+        
+        
+</body>
 		
 	<!-- css -->
-		<link href="css/p5_css.css" rel="stylesheet" type="text/css" ></link>
+		<link href="css/p5_css.css" rel="stylesheet" type="text/css"/>
+
 </html>

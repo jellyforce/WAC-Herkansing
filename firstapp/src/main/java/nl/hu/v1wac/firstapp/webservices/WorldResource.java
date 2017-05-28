@@ -22,6 +22,7 @@ public class WorldResource {
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
 			job.add("name", country.getName());
+			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
 			job.add("region", country.getRegion());
 			job.add("surface", country.getSurface());
