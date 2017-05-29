@@ -84,7 +84,7 @@ function loadCountries(){
 		
 		//FUNCTION MOET EEN KEY/VALUE HEBBEN EN DEZE MOETEN (k,v) GENOEMAND WORDEN
 		$.each(data, function(k, v){
-			$('table').append("<tr><td>"+v.Land+"</td><td>"+v.capital+"</td><td>"+v.region+"</td><td>"+v.surface+"</td><td>"+v.population+"</td></tr>");
+			$('table').append("<tr id='row'><td>"+v.Land+"</td><td>"+v.capital+"</td><td>"+v.region+"</td><td>"+v.surface+"</td><td>"+v.population+"</td></tr>");
 			
 			
 			//laten stoppen bij pakistan
