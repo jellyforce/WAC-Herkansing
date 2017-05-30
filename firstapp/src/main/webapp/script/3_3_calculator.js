@@ -1,4 +1,4 @@
-$(document.load(),function(){
+
 	var huidig = "";
 	var tussenGetal = 0;
 	var resultaat;
@@ -70,4 +70,3 @@ $(document.load(),function(){
 	        }
 	    }
 	}
-})

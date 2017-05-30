@@ -11,6 +11,7 @@ $(document).ready(function(){
 
 function initPage(){
 
+	try{
 	//receive JSON Data from API    (IP-API)
 	 $.getJSON("http://ip-api.com/json/?callback=?", function(data){
 		 
@@ -39,13 +40,19 @@ function initPage(){
 		 
 		 loadCountries();
 		 
-	 },"json");	 	 
+	 },"json");	
+		}
+	catch(err){
+		throw new WebApplicationException(err);
+		}
 	}	 
 
 
 
 function weather(latitude, longtitude,city){
 	
+	try{
+		
 	
 	$.getJSON("http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longtitude+"&q="+city+"&units=metric"+
 				"&APPID=5acf2518f328c2d0e7158c0fff662dd1","jsonp", function(data){
@@ -61,11 +68,17 @@ function weather(latitude, longtitude,city){
 		$("#zonsondergang").append(data.sys.sunset);
 
 	},"json");	
+	}
+	catch(err){
+		throw new WebApplicationException(err);
+	}
 }
 
 
 function loadCountries(){
 	
+	try{
+		
 	
 	//receive information from own Country-API
 	$.getJSON("http://localhost:8070/firstapp/restservices/countries", "jsonp" ,function(data){
@@ -84,7 +97,7 @@ function loadCountries(){
 		
 		//FUNCTION MOET EEN KEY/VALUE HEBBEN EN DEZE MOETEN (k,v) GENOEMAND WORDEN
 		$.each(data, function(k, v){
-			$('table').append("<tr id='row'><td>"+v.Land+"</td><td>"+v.capital+"</td><td>"+v.region+"</td><td>"+v.surface+"</td><td>"+v.population+"</td></tr>");
+			$('table').append("<tr onclick='weather("+v.latitude+","+v.longitude+","+v.capital+")'><td>"+v.Land+"</td><td>"+v.capital+"</td><td>"+v.region+"</td><td>"+v.surface+"</td><td>"+v.population+"</td></tr>");
 			
 			
 			//laten stoppen bij pakistan
@@ -92,6 +105,10 @@ function loadCountries(){
 			
 		})
 	
-	},"json")
+	},"json");
+	}
+	catch(err){
+		throw new WebApplicationException(err);
+	}
 }
 	

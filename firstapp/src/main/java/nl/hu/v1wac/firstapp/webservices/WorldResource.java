@@ -28,6 +28,8 @@ public class WorldResource {
 			job.add("surface", country.getSurface());
 			job.add("population", country.getPopulation());
 			job.add("government", country.getGovernment());
+			job.add("latitude", country.getLatitude());
+			job.add("longitude", country.getLongitude());
 
 			jab.add(job);
 		}
