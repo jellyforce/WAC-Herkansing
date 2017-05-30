@@ -23,4 +23,27 @@
 	</servlet-mapping>
 	
 	
+  <servlet>
+    <servlet-name>CalculatorServlet</servlet-name>
+    <servlet-class>nl.hu.v1wac.firstapp.servlets.CalculatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalculatorServlet</servlet-name>
+    <url-pattern>/CalculatorServlet</url-pattern>
+  </servlet-mapping>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </web-app>

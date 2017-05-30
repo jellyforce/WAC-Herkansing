@@ -20,7 +20,7 @@ public class CalculatorServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String num1 = req.getParameter("num1");
 		String num2 = req.getParameter("num2");
-		String value = req.getParameter("value");
+		String operator = req.getParameter("operator");
 		
 		
 		//zet invoer om van string naar integer		
@@ -33,7 +33,7 @@ public class CalculatorServlet extends HttpServlet{
 		
 		//mogelijke opties qua button-input
 		//alle buttons hebben de naam: "value" maar hun eigen waarde (+, -, /, *)
-		switch (value){
+		switch (operator){
 		case "+" : antwoord = num_1 + num_2;
 			break;
 		case "-" : antwoord = num_1 - num_2;
@@ -55,10 +55,10 @@ public class CalculatorServlet extends HttpServlet{
 	
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
-		out.println("  <title>Dynamic Example</title>");
+		out.println("  <title>Calculator</title>");
 		out.println("  <body>");
-		out.println("    <h2>Dynamic webapplication example</h2>");
-		out.println("    <h2>Het antwoord van: "+num_1 +" "+ value + " "+ num_2 +  " = " + antwoord + "!</h2>");
+		out.println("    <h2>Prachtige calculator</h2>");
+		out.println("    <h1>Het antwoord van: "+num_1 +" "+ operator + " "+ num_2 +  " = " + antwoord + "!</h1>");
 		out.println("  </body>");
 		out.println("</html>");
 
