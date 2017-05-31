@@ -11,13 +11,15 @@
     
     <section class="section1">
     
-	    <div class="titel">Mijn locatie</div>
-	    <div class="content"> 
+	    
+	    <div class="content">
+	    <div class="titel">Mijn locatie</div> 
 	    	<div class="left">   
 		    	<label>landcode</label><br/>
 		    	<label>land</label><br/>
 		    	<label>regio</label><br/>
 		    	<label>stad</label><br/>
+		    	<label></label><br/>
 		    	<label>postcode</label><br/>
 		    	<label>latitude</label><br/>
 		    	<label>longtitude</label><br/>
@@ -31,7 +33,7 @@
 		    	<label id="postcode"></label><br/>
 		    	<label id="lat"></label><br/>
 		    	<label id="lon"></label><br/>
-		    	<label  id="ip"></label><br/>
+		    	<label id="ip"></label><br/>
 	    	</div>
 	    </div>
 	      
@@ -42,8 +44,9 @@
       
         <section class="section2">
     
-	    <div class="titel">Het weer in <label id="location"></label></div>
+	   
 	    <div class="content">
+	    <div class="titel">Het weer in <label id="location"></label></div>
 	    <div class="left">   
 		    	<label>Temperatuur</label><br/>
 		    	<label>Luchvochtigheid</label><br/>
@@ -67,7 +70,9 @@
         <section class="section3">
     
 	    <div class="titel">Beschikbare vakantiebestemmingen</div>
-	    <div >
+	    
+
+	    <div style="overflow-x:auto;"> <!-- practicum 6.3 viewport, responsive table -->
  			<table id="countrylist" >
 	 			<tr>			
 	 				<th>Land</th>
@@ -78,7 +83,7 @@
 	 			</tr>
  			</table>
 	    </div>   
-    
+
     </section>  
     
     
