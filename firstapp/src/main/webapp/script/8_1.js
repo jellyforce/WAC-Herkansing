@@ -3,7 +3,7 @@ $(document).ready(function(){
 	//verbergen van elementen
 	$('#toevoegen').hide();
 	$('#search').hide();
-	$('#home').hide();  							/*tijdelijk  om  de inhoud te bepalen*/	
+	$('#land-pagina').hide();
 	
 	
 
@@ -40,9 +40,19 @@ $('#menu-item2').click(function(){
 });
 	
 
+function showCountryPage(){
+	$('#home').hide();
+	$('#toevoegen').hide();
+	$('#search').hide();	
+	$('#land-pagina').fadeIn(1000);
+}	
 	
-	
-	
+function closeCountryPage(){
+	$('#home').hide();
+	$('#toevoegen').hide();
+	$('#land-pagina').hide();	
+	$('#search').fadeIn(1000);
+}	
 	
 /*
 	=================================================
@@ -53,9 +63,14 @@ $('#menu-item2').click(function(){
 	
 function landOphalen(code){
 		
-		alert('dit werkt!: ' + code);
 		
-		$.getJSON("http://localhost:8070/firstapp/restservices/countries/"+code,+"jsonp" ,function(data){			
+		
+	showCountryPage();
+		
+		
+		
+		
+/*		$.getJSON("http://localhost:8070/firstapp/restservices/countries/"+code,+"jsonp" ,function(data){			
 
 			
 		// vullen van de section met id="land-pagina"
@@ -65,9 +80,9 @@ function landOphalen(code){
 			
 			
 			
-	}),"json"}
+	}),"json"}*/
 		
-	
+}	
 	
 	
 /*
