@@ -83,5 +83,11 @@ body{
 
 tr:hover{
 	background-color: white;
+	cursor: pointer;
+}
+
+label div:hover{
+	background-color: white;
+	cursor: pointer;
 }
 

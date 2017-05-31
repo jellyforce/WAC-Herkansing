@@ -5,7 +5,11 @@ $(document).ready(function(){
 	
 
 	
-})
+	
+});
+
+
+
 
 
 
@@ -18,14 +22,14 @@ function initPage(){
 		 console.log("-2- ip-gegevens opgehaald");
 		 
 		 //Add IP-information to all corresponding elements in first section
-		 $("#landcode").append(data.countryCode);
-		 $("#land").append(data.country);
-		 $("#regio").append(data.region);
-		 $("#stad").append(data.city);
-		 $("#postcode").append(data.zip);
-		 $("#lat").append(data.lat);
-		 $("#lon").append(data.lon);
-		 $("#ip").append(data.query);
+		 document.getElementById("landcode").innerHTML = data.countryCode;
+		 document.getElementById("land").innerHTML = data.country;
+		 document.getElementById("regio").innerHTML = data.region;
+		 document.getElementById("stad").innerHTML =  "<div class=\"stad\" onclick= 'weather(\"" + data.lat + "\", \"" + data.lon + "\", \""  + data.city + "\");'>" + data.city + "</div>";
+		 document.getElementById("postcode").innerHTML = data.zip;
+		 document.getElementById("lat").innerHTML = data.lat;
+		 document.getElementById("lon").innerHTML = data.lon;
+		 document.getElementById("ip").innerHTML = data.query;
 		 
 		 
 		 
@@ -47,6 +51,11 @@ function initPage(){
 
 
 
+
+
+
+
+
 function weather(latitude, longtitude,city){
 	console.log("-4- de weather functie is gestart");
 
@@ -58,9 +67,12 @@ function weather(latitude, longtitude,city){
 		
 		// sla deze data op in een variabele, dit is een array [de data, de tijd]
 		var arrayCity = JSON.parse(window.sessionStorage.getItem(city));
+		
+		console.log("type of json result uit session: " +arrayCity);
 
-		data = arrayCity[0];
-		date = arrayCity[1];
+		data = arrayCity.jsondata;
+		date = arrayCity.datum;
+
 		
 		
 
@@ -72,20 +84,23 @@ function weather(latitude, longtitude,city){
 		
 			
 			$.getJSON("http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longtitude+"&q="+city+"&units=metric"+
-						"&APPID=5acf2518f328c2d0e7158c0fff662dd1","jsonp", function(data){
+						"&APPID=5acf2518f328c2d0e7158c0fff662dd1", function(data){
 
 				console.log("-5- data is opgehaald uit de api");
 				console.log("-6- de opgehaalde data(land): " + data.Land);
 				
+				console.log("type of json result van weatherapi: " +data);
+				
 				//alle elementen vullen in de html
 				
-				$("#temperatuur").append(data.main.temp + " \u00b0C");
-				$("#luchvochtigheid").append(data.main.humidity + "%");
-				$("#windsnelheid").append((data.wind.speed /3.6) + "m/s");
-				$("#windrichting").append(data.wind.deg);
-				$("#zonsopgang").append(stringToTime(data.sys.sunrise));
-				$("#zonsondergang").append(stringToTime(data.sys.sunset));
-
+				document.getElementById("temperatuur").innerHTML = data.main.temp + " \u00b0C";
+				document.getElementById("luchvochtigheid").innerHTML = data.main.humidity + "%";
+				document.getElementById("windsnelheid").innerHTML = (data.wind.speed /3.6) + "m/s";
+				document.getElementById("windrichting").innerHTML = data.wind.deg;
+				document.getElementById("zonsopgang").innerHTML = stringToTime(data.sys.sunrise);
+				document.getElementById("zonsondergang").innerHTML = stringToTime(data.sys.sunset);
+				document.getElementById("location").innerHTML = (data.name);
+				
 				console.log("-11- de elementen zijn gevuld met de data");
 				
 				
@@ -98,11 +113,15 @@ function weather(latitude, longtitude,city){
 				console.log("-7- == current date object  ==" + requestDate);
 				
 				//het array-object dat in de sessie komt te staan met de data en bijbehorende datum(tijd)
-				var array = [];
+				var array = {};
 				
 				//voeg alles toe aan de array
-				array.push(data);
-				array.push(requestDate);	
+				array.jsondata = data;
+				array.datum = requestDate;
+				
+				
+				
+	
 				
 				
 				
@@ -121,35 +140,39 @@ function weather(latitude, longtitude,city){
 				
 			},"json");
 			
-		}		
+		}	
+		
+		
+		
 			
 		// is dit binnen de 10 minuten marge?
 		// dan halen we het op uit de sessie:
 		// hiervoor gebruiken we de data die bovenaan de functie al gedefineerd is
 			
 		else{
-			console.log("-10- in de else-statement van de weather functie");
+			console.log("-10- in de else-statement van de weather functie, het komt nu uit de sessie");
 			
-			console.log("-10.1- we halen de data uit de sessie en parsen deze met JSON.parse()");
+			//console.log("-10.1- we halen de data uit de sessie en parsen deze met JSON.parse()");
 			// sla deze data op in een variabele, dit is een array [de data, de tijd]
-			var arrayCity = JSON.parse(window.sessionStorage.getItem(city));
+/*			var arrayCity = JSON.parse(window.sessionStorage.getItem(city));
+
 			
 			console.log("-10.2- data is opgehaald en geparsed");
 
 
-			data = arrayCity[0];
+			data = arrayCity[0];*/
 			
 			
 			console.log("-11- de data plaatsen we in de elementen");
 			//alle elementen vullen in de html met de data uit de sessiontorage
 			
-			$("#temperatuur").append(data.main.temp + " \u00b0C");
-			$("#luchvochtigheid").append(data.main.humidity + "%");
-			$("#windsnelheid").append((data.wind.speed /3.6) + "m/s");
-			$("#windrichting").append(data.wind.deg);
-			$("#zonsopgang").append(stringToTime(data.sys.sunrise));
-			$("#zonsondergang").append(stringToTime(data.sys.sunset));
-			
+			document.getElementById("temperatuur").innerHTML = data.main.temp + " \u00b0C";
+			document.getElementById("luchvochtigheid").innerHTML = data.main.humidity + "%";
+			document.getElementById("windsnelheid").innerHTML = (data.wind.speed /3.6) + "m/s";
+			document.getElementById("windrichting").innerHTML = data.wind.deg;
+			document.getElementById("zonsopgang").innerHTML = stringToTime(data.sys.sunrise);
+			document.getElementById("zonsondergang").innerHTML = stringToTime(data.sys.sunset);
+			document.getElementById("location").innerHTML = (data.name);
 			
 			console.log("-12- de data is nu in de elementen geplaatst");
 			
@@ -158,6 +181,8 @@ function weather(latitude, longtitude,city){
 			
 		}		
 	}
+	
+	
 	
 
 	
@@ -168,19 +193,25 @@ function weather(latitude, longtitude,city){
 		console.log("-14.1- we gaan de date ophalen bij de api");
 
 		$.getJSON("http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longtitude+"&q="+city+"&units=metric"+
-				"&APPID=5acf2518f328c2d0e7158c0fff662dd1","jsonp", function(data){
+				"&APPID=5acf2518f328c2d0e7158c0fff662dd1", function(data){
 
 		console.log("-15- data is opgehaald uit de api");
-		console.log("-16- de opgehaalde data(land): " + data.name);
+		
+		console.log("type of json result van weatherapi: " +data);
+		
+		console.log("-16- de opgehaalde data voorbeeld (city): " + data.name);
+		
+		
 		
 		//alle elementen vullen in de html
 		
-		$("#temperatuur").append(data.main.temp + " \u00b0C");
-		$("#luchvochtigheid").append(data.main.humidity + "%");
-		$("#windsnelheid").append((data.wind.speed /3.6) + "m/s");
-		$("#windrichting").append(data.wind.deg);
-		$("#zonsopgang").append(stringToTime(data.sys.sunrise));
-		$("#zonsondergang").append(stringToTime(data.sys.sunset));
+		document.getElementById("temperatuur").innerHTML = data.main.temp + " \u00b0C";
+		document.getElementById("luchvochtigheid").innerHTML = data.main.humidity + "%";
+		document.getElementById("windsnelheid").innerHTML = (data.wind.speed /3.6) + "m/s";
+		document.getElementById("windrichting").innerHTML = data.wind.deg;
+		document.getElementById("zonsopgang").innerHTML = stringToTime(data.sys.sunrise);
+		document.getElementById("zonsondergang").innerHTML = stringToTime(data.sys.sunset);
+		document.getElementById("location").innerHTML = (data.name);
 
 		console.log("-17- de elementen zijn gevuld met de data");
 		
@@ -193,16 +224,18 @@ function weather(latitude, longtitude,city){
 		var requestDate = new Date(); 
 		console.log("-18- == current date object  ==" + requestDate);
 		
-		//het array-object dat in de sessie komt te staan met de data en bijbehorende datum(tijd)
-		var array = [];
+		//het json-object dat in de sessie komt te staan met de data en bijbehorende datum(tijd)
+		var array = {};
+		array.jsondata = data;
+		array.datum = requestDate;
 		
-		//voeg alles toe aan de array
+/*		//voeg alles toe aan de array
 		array.push(data);
 		array.push(requestDate);	
+		*/
 		
 		
-		
-		//de array slaan we nu op in de sessie onder de naam van het land
+		//de JSONarray slaan we nu op in de sessie onder de naam van het land
 		//zo kunnen we straks herkennen of deze al eens is opgevraagd en zo ja, hoe lang geleden
 		
 		//data moet weer om worden gezet naar een JSONstring, anders gaat het NIET WERKEN
@@ -216,48 +249,73 @@ function weather(latitude, longtitude,city){
 		
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
+
+
+
+
+
+
+
+
+
+
 
 function loadCountries(){
 	
 	console.log("-21- loadCounties functie gestart");	
 	
 	//receive information from own Country-API
-	$.getJSON("http://localhost:8070/firstapp/restservices/countries", "jsonp" ,function(data){
+	$.getJSON("http://localhost:8070/firstapp/restservices/countries","jsonp" ,function(data){
 
 		console.log("-22- data is opgehaald uit de api");
 		//for each piece of data in the JSON-object create a table row which holds its data and append it to the " HTML-variable "
 		//also an event is added to each row called " loadCountries() "		
 
-
+		
 		//FUNCTION MOET EEN KEY/VALUE HEBBEN en deze noemen we (k,v) 
 		$.each(data, function(k, v){
+			var latitude = v.latitude;
+			console.log("latitude: " + latitude);
+			console.log("latitude type: " + typeof latitude);
+			var longitude = v.longitude;
+			console.log("longitude: "+ longitude);
+			console.log("longitude type: "+ typeof longitude);
+			var stad = v.capital;
+			console.log("city: " + stad);
+			console.log("city type: " + typeof stad);
+			
 			
 			console.log("-23- de each functie in loadCountries");
-			$('table').append("<tr><td>"+v.Land+"</td><td onclick='weather("+v.latitude+","+v.longitude+","+v.capital+");'>"+v.capital+"</td><td>"+v.region+"</td><td>"+v.surface+"</td><td>"+v.population+"</td></tr>");
+			//weather("+v.latitude+","+v.longitude+","+v.capital+",)
+			$('table').append("<tr onclick= 'weather(\"" + latitude + "\", \"" + longitude + "\", \""  + stad + "\");'><td>"+v.Land+"</td><td>"+v.capital+"</td><td>"+v.region+"</td><td>"+v.surface+"</td><td>"+v.population+"</td></tr>");
 			
 			
-			console.log("-24- alle rows met landenzijn toegevoegd");
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
 			
 			//laten stoppen bij pakistan
 			return ( v.Land !== "Pakistan" );
 			
+			
+			console.log("-24- alle rows met landenzijn toegevoegd");
 			console.log("-25- einde loadCountries functie");
 			
-		})
-	
+		});
+		
 	},"json");
 }
+
+
+
 
 
 function stringToTime(seconds){	
@@ -265,6 +323,10 @@ function stringToTime(seconds){
 	
 	return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
 }
+
+
+
+
 
 function tenMinutesAgo(date){
 	var oldDate = parseDate(date);
@@ -306,9 +368,9 @@ function tenMinutesAgo(date){
 
 //parse a date in yyyy-mm-dd format
 function parseDate(input) {
+	console.log("date-input in parseDate(): "+ input);	
   var parts = input.match(/(\d+)/g);
   // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
   return new Date(parts[0], parts[1]-1, parts[2], parts[3], parts[4], parts[5], parts[6]); // months are 0-based
 }
 
-	
