@@ -73,8 +73,8 @@ section{
 	height: 40px;
 	text-align: center;
 	line-height: 40px;
-	font-size: 30px;
-	background-color: #D3D3D3;
+	font-size: 28px;
+	background-color: #a8a8a8;
 	color: white;
 }
 
@@ -198,15 +198,14 @@ label{
   */
   
   
- #search-container-left{
+#search-container-left{
  	float: left;
  	width: 59.75%;
  	height: 55vh;
- 	border-right: 2px solid gray;
 } 
  
 
- #search-left{
+#search-left{
  	float: left;
  	width: 59.75%;
  	height: 51vh;
@@ -214,52 +213,54 @@ label{
  }
  
   
- #search-left-top{
+#search-left-top{
+	position: relative;
  	width: 100%;
  	height: 27vh;
- 	border-bottom: 2px solid gray
+ 	border-bottom: 2px solid gray;
  } 
   
- #search-left-bottom{
+#search-left-bottom{
  	width: 100%;
  	height: 27vh;
  }
  
 #search-container-middle{
 	float: left;
- 	width: 40%;
+ 	width: 39.75%;
  	height: 51vh;
+ 	border-right: 2px solid gray;
  }
  
   
- #search-opgevraagde-landen{
+#search-opgevraagde-landen{
  	float: left;
- 	width: 40%;
+ 	width: 40.2%;
  	height: 55vh;
  	
  } 
 
   
- #title2{
+#title2{
  	margin-top: 10px;
  	margin-left: auto;
  	margin-right: auto;
  	width: 95%;
  	height: 40px;
  	line-height: 40px;
- 	background-color:#D3D3D3;
+ 	background-color: #a8a8a8;
  	font-size: 25px;
  	text-align: center;
  	color: white;
  } 
   
-  #zoekopdracht{
+#zoekopdracht{
   	text-align: left;
   	padding-left: 4.6em;
   }
   
   
-  #middle-container{
+#middle-container{
   	margin-top: 10px;
   	margin-left: auto;
   	margin-right: auto;
@@ -267,32 +268,144 @@ label{
   	height: 45vh;
   }
   
-  #container-section{
+#container-section{
   	margin-bottom: 5px;
   	width: 100%;
   	height: 14.5vh;
+ 
   
   }
 
-  #container-left{
+#container-left{
+/* 	visibility: hidden;  */        /* weer weghalen als je ze wilt */
   	float: left;
-  	width: 20%;
+  	width: 10%;
   	height: 14.5vh;
-  	background-color: gray;
-  	line-height: 80px;
+/*   	background-color: gray; */
   	text-align: center;
   	font-size: 25px;
-  	color: white;
-  	 	
-  }
+  	color: black;
+}
+
   
   #container-right{
+/*     visibility: hidden; */         /* weer weghalen als je ze wilt */
    	float: right;
-  	width: 20%;
+  	width: 10%;
   	height: 14.5vh;
-  	background-color: gray;
-  	line-height: 80px;
+/*   	background-color: gray; */
   	text-align: center;
   	font-size: 25px;
-  	color: white; 	
+  	color: black; 	
   }
+  
+#sign{
+	margin-top: 55px;
+	text-align: center;	
+}
+
+#input-label{
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 25px;
+	color: gray;
+	
+}
+
+#search-input{
+	float: left;
+	width: 250px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+#wat-zoek-je{
+	float: left;
+	margin-top: 35px;
+	margin-left: 10px;
+	font-size: 25px;
+	color: gray;
+}
+
+#zoek-btn{
+	position: absolute;
+	bottom: 10px;
+	left: 29%;
+	width: 35%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 22px;
+	background-color: 	#76afff;
+}
+
+
+#container-opties{
+	width: 90%;
+	height: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+
+}
+
+#snelkeuze-btn{
+	margin-right: 3px;
+	float: left;
+	width: 32%;
+	height: 50px;
+	background-color: #76afff;
+	text-align: center;
+	line-height: 50px;
+	font-size: 22px;
+	opacity: .8;
+}
+
+#snelkeuze-btn:hover{
+	opacity: 1;
+	box-shadow: 2px 2px 2px gray;
+}
+
+
+/*
+==================================================================
+						SECTION: 	   	LANDEN TABEL
+==================================================================
+  */
+
+
+#landen-info{
+	width: 100%;
+	height: 110px;
+	border-bottom: 2px solid gray
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid white;
+    background-color: gray;
+}
+
+th, td {
+    border: none;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:hover{
+	background-color: white;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+

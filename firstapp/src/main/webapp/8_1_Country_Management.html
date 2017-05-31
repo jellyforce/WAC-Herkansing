@@ -162,13 +162,29 @@
 					
 					<div id="search-left-top">
 <!-- BOVEN:  Hier komt content -->
+	
+						<label id="input-label">Zoek iets!</label>					
+						<input id="search-input" type="text" name="aanvraag"></input>					
+						<label id="wat-zoek-je">Waar ben je naar opzoek?</label>
+						
+						<div id="zoek-btn"><label>Ga zoeken!</label></div>
+
 					</div>
+					
+
+					
+					
 					
 					
 					<div id="search-left-bottom">
 						<div id="title"><p>Maak een keuze:</p></div>
 <!-- ONDER:   Hier komt content -->
 						
+						<div id="container-opties">
+							<div id="snelkeuze-btn">Alles</div>
+							<div id="snelkeuze-btn">Oppervlakte</div>
+							<div id="snelkeuze-btn">Populatie</div>					
+						</div>
 						
 					</div>
 				
@@ -180,32 +196,22 @@
 <!-- MIDDEN:  Hier komt content -->	
 
 					<div id="middle-container">
-						<div id="container-section">
-							<div id="container-left"> <label id="label-left"></label>  </div>
-						</div>
-						<div id="container-section">
-							<div id="container-right"> <label id="label-right"></label> </div>
+						<div id="container-section" style="border-bottom: 3px solid #76afff">
+							<div id="container-left"><div id="sign"> &#60;&#60; </div></div>
 							
+							<p style="font-size: 15px;">Voor specifieke zoekopdrachten zoals: naam van een land / hoofdstad</p>
+							<p style="font-size: 15px;">Maar ook de latitude / longitude</p>
+						</div>
+						<div id="container-section" style="border-bottom: 3px solid #76afff">
+							<div id="container-right"><div id="sign"> &#62;&#62; </div></div>
+							<p style="line-height: 30px; font-size: 15px;">Een overzicht van alle opgehaalde landen op basis van jouw zoekopdrachten</p>
+							<p style="font-size: 15px;">Klik op de regel voor meer info</p>							
 						</div>
 						<div id="container-section">
-							<div id="container-left"> <label id="label-left"></label> </div>
-							
-						</div>
-					
+							<div id="container-left"> <div id="sign"> &#60;&#60; </div></div>
+							<p style="line-height: 150px; font-size: 15px;">Een snelzoek functie</p>
+						</div>					
 					</div>				
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						
-				
 				</div>
 			</div>
 			
@@ -215,7 +221,32 @@
 	
 			<div id="search-opgevraagde-landen">
 				<div id="title"><p>Overzicht van landen</p></div>
-<!-- RECHTS:   Hier komt content -->						
+<!-- RECHTS:   Hier komt content -->
+
+				<div id="landen-info">
+					
+					<p style="font-size: 15px; line-height: 40px; margin-top: 40px;">Alleen als er wordt gekozen voor de optie "Alles" zullen alle resultaten worden getoond.</p>
+					<p style="font-size: 15px;">In andere gevallen zullen dit er maximaal 10 zijn</p>
+				</div>
+		
+		
+			    <div style="overflow-x:auto;"> <!-- responsive table -->
+		 			<table id="countrylist" >
+			 			<tr>			
+			 				<th>Land</th>
+			 				<th>Land code</th>
+			 				<th>Hoofdstad</th>
+			 				<th>Continent</th>
+			 				<th>Regio</th>
+			 				<th>Oppervlakte</th>
+			 				<th>Inwoners</th>
+			 				<th>Regering</th>
+			 				<th>Latitude</th>
+			 				<th>Longitude</th>
+			 			</tr>
+		 			</table>
+			    </div>
+									
 			</div>
 	</section>
 
