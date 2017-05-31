@@ -80,9 +80,8 @@ section{
 
 #fiftyPercentWidth{
 	float: left;
-	width: 49%;
+	width: 48.5%;
 	height: 48.5vh;
-	background-color: white;
 	margin-top: 5px;
 	margin-left: 10px;
 	font-size: 16px;
@@ -108,11 +107,17 @@ p{
 
 
 
+
 /*
 ==================================================================
 						SECTION: 	   HOME
 ==================================================================
   */
+
+
+
+
+
 
 #par{
 	margin-top: 20px;
@@ -132,11 +137,19 @@ img{
 	height: 200px;
 }
 
+
+
+
+
 /*
 ==================================================================
 						SECTION: 	   TOEVOEGEN
 ==================================================================
   */
+
+
+
+
 
 #toevoegen-content{
 	float: left;
@@ -191,11 +204,17 @@ label{
 }
 
 
+
+
+
 /*
 ==================================================================
 						SECTION: 	   SEARCH
 ==================================================================
   */
+  
+  
+  
   
   
 #search-container-left{
@@ -214,11 +233,21 @@ label{
  
   
 #search-left-top{
-	position: relative;
  	width: 100%;
  	height: 27vh;
  	border-bottom: 2px solid gray;
- } 
+ }
+ 
+#search-left-top-upper{
+	width: 100%;
+	height: 18vh;
+}
+
+#search-left-top-bottom{
+	position: relative;
+	width: 100%;
+	height:9vh;
+} 
   
 #search-left-bottom{
  	width: 100%;
@@ -306,7 +335,7 @@ label{
 
 #input-label{
 	float: left;
-	margin-top: 20px;
+	margin-top: 40px;
 	margin-left: 10px;
 	font-size: 25px;
 	color: gray;
@@ -317,8 +346,8 @@ label{
 	float: left;
 	width: 250px;
 	height: 30px;
-	margin-top: 20px;
-	margin-left: 10px;
+	margin-top: 40px;
+	margin-left: 20px;
 }
 
 #wat-zoek-je{
@@ -331,13 +360,15 @@ label{
 
 #zoek-btn{
 	position: absolute;
-	bottom: 10px;
-	left: 29%;
+	bottom: 30px;
+	left: 30%;
 	width: 35%;
 	height: 50px;
+	text-align: center;
 	line-height: 50px;
 	font-size: 22px;
 	background-color: 	#76afff;
+	cursor: pointer;
 }
 
 
@@ -346,12 +377,11 @@ label{
 	height: 80px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 50px;
-
+	margin-top: 70px;
 }
 
 #snelkeuze-btn{
-	margin-right: 3px;
+	margin-right: 5px;
 	float: left;
 	width: 32%;
 	height: 50px;
@@ -360,12 +390,17 @@ label{
 	line-height: 50px;
 	font-size: 22px;
 	opacity: .8;
+	cursor: pointer;
 }
 
 #snelkeuze-btn:hover{
 	opacity: 1;
 	box-shadow: 2px 2px 2px gray;
 }
+
+
+
+
 
 
 /*
@@ -375,12 +410,14 @@ label{
   */
 
 
+
+
+
 #landen-info{
 	width: 100%;
-	height: 110px;
-	border-bottom: 2px solid gray
+	height: 8vh;
+	border-bottom: 2px solid gray;
 }
-
 
 table {
     border-collapse: collapse;
@@ -390,8 +427,8 @@ table {
     background-color: gray;
 }
 
-th, td {
-    border: none;
+th{
+    border: 1px solid white;
     text-align: left;
     padding: 8px;
 }
@@ -405,7 +442,92 @@ tr:hover{
 
 
 
+/*
+==================================================================
+						SECTION: 	   	LAND INZIEN & BEWERKEN
+==================================================================
+  */
 
 
 
 
+
+
+
+
+#centered{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	width: 40%;
+	heigth: 49vh;
+}
+
+
+#centered label{
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: auto;
+	margin-top: 5px;
+	width: 100%;
+	height: 15px;
+	font-size: 15px;
+	color: gray;
+}
+
+#centered input{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	height: 15px;
+}
+
+#land-bewerking-sectie{
+	float: left;
+	width: 40%;
+	height: 49vh;	
+}
+
+
+
+
+#land-container-omschrijving{
+	float: left;
+	width: 49.5%;
+	height: 50vh;
+}
+
+
+#land-label{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	width: 100%;
+	height: 80px;
+	text-align: center;
+	line-height: 50px;
+}
+
+
+#land-container-btns{
+	float: left;
+	width: 49.5%;
+	height: 50vh;
+}
+
+#land-bewerk-btn{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+	width: 50%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: #76afff;
+	cursor: pointer;
+	font-size: 25px;
+	
+}  
+  
+  
+  

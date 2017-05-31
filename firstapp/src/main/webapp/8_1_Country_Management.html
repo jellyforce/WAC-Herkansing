@@ -3,20 +3,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Country Service</title>
-
-
-
-	<!-- script -->
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-		<script src="script/8_1.js"></script>
- 		
-	<!-- css -->
-		<link href="css/8_1.css" rel="stylesheet" type="text/css"/>
-		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-		
-
-
-
 </head>
 
 
@@ -40,11 +26,21 @@
 	</div>
 	
 	
+	
+	
+	
+	
+	
+	
 	<!-- ======================================================================================= 
 										 PAGE:  HOME
 		 ======================================================================================= 
 	-->
 	
+
+
+
+
 
 
 
@@ -85,10 +81,17 @@
 
 
 
+
+
+
 	<!-- ======================================================================================= 
 										 PAGE:  + COUNTRY
 		 ======================================================================================= 
 	-->
+
+
+
+
 
 
 
@@ -147,10 +150,20 @@
 	
 	
 	
+	
+	
+	
 	<!-- ======================================================================================= 
 										 PAGE:  SEARCH
 		 ======================================================================================= 
 	-->
+	
+	
+	
+	
+	
+	
+	
 	
 		
 	<section id="search">
@@ -162,13 +175,14 @@
 					
 					<div id="search-left-top">
 <!-- BOVEN:  Hier komt content -->
-	
-						<label id="input-label">Zoek iets!</label>					
-						<input id="search-input" type="text" name="aanvraag"></input>					
-						<label id="wat-zoek-je">Waar ben je naar opzoek?</label>
-						
-						<div id="zoek-btn"><label>Ga zoeken!</label></div>
-
+						<div id="search-left-top-upper">
+							<label id="input-label">Zoek iets!</label>					
+							<input id="search-input" type="text" name="aanvraag"></input>					
+							<label id="wat-zoek-je">Waar ben je naar opzoek?</label>
+						</div>						
+						<div id="search-left-top-bottom">	
+							<div id="zoek-btn">Ga zoeken!</div>
+						</div>
 					</div>
 					
 
@@ -181,9 +195,9 @@
 <!-- ONDER:   Hier komt content -->
 						
 						<div id="container-opties">
-							<div id="snelkeuze-btn">Alles</div>
-							<div id="snelkeuze-btn">Oppervlakte</div>
-							<div id="snelkeuze-btn">Populatie</div>					
+							<div id="snelkeuze-btn" onclick='alleLanden();'>Alles</div>
+							<div id="snelkeuze-btn" onclick='grootsteOppervlaktes();'>Oppervlakte</div>
+							<div id="snelkeuze-btn" onclick='grootstePopulaties();'>Populatie</div>					
 						</div>
 						
 					</div>
@@ -230,25 +244,33 @@
 				</div>
 		
 		
-			    <div style="overflow-x:auto;"> <!-- responsive table -->
-		 			<table id="countrylist" >
-			 			<tr>			
-			 				<th>Land</th>
-			 				<th>Land code</th>
-			 				<th>Hoofdstad</th>
-			 				<th>Continent</th>
-			 				<th>Regio</th>
-			 				<th>Oppervlakte</th>
-			 				<th>Inwoners</th>
-			 				<th>Regering</th>
-			 				<th>Latitude</th>
-			 				<th>Longitude</th>
-			 			</tr>
+			    <div id="table-div" style="overflow-x: auto;  height: 38vh;"> 
+		 			<table id="countrylist">
+						<thead>
+				 			<tr style="display: block;">	<!-- bovenste rij zal blijven staan -->		
+				 				<th>Land</th>
+				 				<th>Land code</th>
+				 				<th>Hoofdstad</th>
+				 				<th>Continent</th>
+				 				<th>Regio</th>
+				 				<th>Oppervlakte</th>
+				 				<th>Inwoners</th>
+				 				<th>Regering</th>
+				 				<th>Latitude</th>
+				 				<th>Longitude</th>
+				 			</tr>
+						</thead>
+						<tbody style="display: block;  height: 38vh; overflow-y: auto;"></tbody>
 		 			</table>
 			    </div>
 									
 			</div>
 	</section>
+
+
+
+
+
 
 
 
@@ -258,17 +280,99 @@
 		 ======================================================================================= 
 	-->
 	
+	
+	
+	
+	
+ 	<section id="land-pagina">
+		
+		<div id="toevoegen-content">
+			<div id="title"><p>Je bekijkt nu: </p><p id="land-invoer-header"></p></div>
+		
+				<div id="centered">
+
+
+					<label>landcode</label><br/>
+					<input type="text" name="landcode"></input><br/>
+					
+			    	<label>land naam</label><br/>
+					<input type="text" name="land_naam"></input><br/>
+					
+			    	<label>Hoofdstad</label><br/>					
+					<input type="text" name="Hoofdstad"></input><br/>
+					
+			    	<label>Continent</label><br/>					
+					<input type="text" name="Continent"></input><br/>
+
+			    	<label>regio</label><br/>			
+					<input type="text" name="regio"></input><br/>
+					
+					<label>Oppervlakte</label><br/>
+					<input type="text" name="Oppervlakte"></input><br/>
+					
+					<label>Populatie</label><br/>
+					<input type="text" name="Populatie"></input><br/>
+					
+			    	<label>Regering</label><br/>				
+					<input type="text" name="Regering"></input><br/>
+					
+					<label>Latitude</label><br/>
+					<input type="text" name="Latitude"></input><br/>
+					
+					<label>Longtitude</label><br/>
+					<input type="text" name="Longtitude"></input><br/>
+				</div>
+		
+	
+				
+
+						
+			</div>
+			
+			<div id="title"><p>Wat wil je doen?</p></div>
+			
+			<div id="land-bewerking-sectie">
+				<div id="land-container-omschrijving">
+					<div id="land-label"></div>
+					<div id="land-label">Heb je wijzigingen aangebracht?</div>
+					<div id="land-label">Wil je van je land af?</div>
+				</div>
+				
+				
+				<div id="land-container-btns">					
+					<div id="land-bewerk-btn">Sluiten</div>
+					<div id="land-bewerk-btn" style="background-color: green; opacity: .8;">Doorvoeren</div>
+					<div id="land-bewerk-btn" style="background-color: red; opacity: .8">Verwijder</div>
+				</div>	
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</section>
 
 
 
 
-
-
-
-
-
+	
+	
+	<!-- script -->
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="script/8_1.js"></script>
 
 
 </body>
+ 		
+ 		
+	<!-- css -->
+		<link href="css/8_1.css" rel="stylesheet" type="text/css"/>
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+
+
 
 </html>
