@@ -46,13 +46,17 @@ public class WorldResource {
 		Country country = service.getCountryByCode(code);
 
 		JsonObjectBuilder job = Json.createObjectBuilder();
+		job.add("Land", country.getName());
 		job.add("code", country.getCode());
 		job.add("name", country.getName());
+		job.add("capital", country.getCapital());
 		job.add("continent", country.getContinent());
 		job.add("region", country.getRegion());
 		job.add("surface", country.getSurface());
 		job.add("population", country.getPopulation());
 		job.add("government", country.getGovernment());
+		job.add("latitude", country.getLatitude());
+		job.add("longitude", country.getLongitude());
 
 		return job.build().toString();
 	}
@@ -69,11 +73,14 @@ public class WorldResource {
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
 			job.add("name", country.getName());
+			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
 			job.add("region", country.getRegion());
 			job.add("surface", country.getSurface());
 			job.add("population", country.getPopulation());
 			job.add("government", country.getGovernment());
+			job.add("latitude", country.getLatitude());
+			job.add("longitude", country.getLongitude());
 
 			jab.add(job);
 		}
@@ -93,16 +100,48 @@ public class WorldResource {
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
 			job.add("name", country.getName());
+			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
 			job.add("region", country.getRegion());
 			job.add("surface", country.getSurface());
 			job.add("population", country.getPopulation());
 			job.add("government", country.getGovernment());
+			job.add("latitude", country.getLatitude());
+			job.add("longitude", country.getLongitude());
 
 			jab.add(job);
 		}
 		JsonArray array = jab.build();
 		return array.toString();
 	}
+	
+	
+	@GET
+	@Path("/random/{code}")
+	@Produces("application/json")
+	public String getRandomSearch(@PathParam("code") String code) {
+		WorldService service = ServiceProvider.getWorldService();
+		
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+		for(Country country : service.findBySearch(code)){
+			JsonObjectBuilder job = Json.createObjectBuilder();
+			job.add("Land", country.getName());
+			job.add("code", country.getCode());
+			job.add("name", country.getName());
+			job.add("capital", country.getCapital());
+			job.add("continent", country.getContinent());
+			job.add("region", country.getRegion());
+			job.add("surface", country.getSurface());
+			job.add("population", country.getPopulation());
+			job.add("government", country.getGovernment());
+			job.add("latitude", country.getLatitude());
+			job.add("longitude", country.getLongitude());
+			
+			jab.add(job);
+		}
+		JsonArray array = jab.build();
+		return array.toString();
+	}
+	
 
 }

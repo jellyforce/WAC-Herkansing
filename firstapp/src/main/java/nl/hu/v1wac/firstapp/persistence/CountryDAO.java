@@ -39,11 +39,11 @@ public class CountryDAO extends BaseDAO {
   }
   
   public List<Country> findAll() {
-    return selectCountry("SELECT * FROM country");
+    return selectCountry("SELECT * FROM country ORDER BY name asc");
   }
   
   public Country findByCode(String incode){
-    return selectCountry("SELECT * FROM country WHERE code2 = '"+ incode + "'").get(0);
+    return selectCountry("SELECT * FROM country WHERE code2 = '"+ incode + "'" ).get(0);
   }
   
   public List<Country> find10LargestPopulations() {
@@ -55,7 +55,10 @@ public class CountryDAO extends BaseDAO {
   }
   
   public List<Country> findBySearch(String search){
-	    return selectCountry("SELECT * FROM country WHERE code2 = '"+ search + "' OR name = '"+ search + "' OR code = '"+ search + "' OR region = '"+ search + "' OR localname = '"+ search + "' OR headofstate = '"+ search + "' OR capital = '"+ search + "'");
+	  
+	  //probeer van search een nummer te maken zo ja.. zoek in de nummers, zoniet: zoek in de strings
+	  
+	    return selectCountry("SELECT * FROM country WHERE code = '"+ search + "' OR name = '"+ search + "' OR region = '"+ search + "' OR localname = '"+ search + "' OR governmentform = '"+ search + "' OR headofstate = '"+ search + "' OR code2 = '"+ search + "' OR capital = '"+ search + "'");
 	  }
   
 //  public Country update(Country country){
