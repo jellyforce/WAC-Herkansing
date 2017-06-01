@@ -64,7 +64,24 @@ public class CountryDAO extends BaseDAO {
 //  public Country update(Country country){
 //	  return (Country) selectCountry("update country set name = " + country.getName() + ", continent = " + country.getContinent() + ", region = " + country.getRegion() + ", surface = " + country.getSurface() + ", population = " + country.getPopulation() + ", government = " + country.getGovernment() + " where code =" + country.getCode());
 //  }
-//  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+/*===============================  
+	Verwijderen Land
+===============================
+*/
+  
+  
   public boolean delete(String code){
 	  boolean result = false;
 	  boolean countryExists = findByCode(code) != null;
@@ -84,4 +101,51 @@ public class CountryDAO extends BaseDAO {
 	  }
 	  return result;
   }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+/*===============================  
+  			Toevoegen Land
+===============================
+*/
+public void Insert(Country c) {
+	
+	
+	try (Connection con = super.getConnection()) {
+		
+		
+		
+		
+	      Statement stmt = con.createStatement();
+	      
+/*	      insert into country(code2, code, name, capital, continent, region, surfacearea, population, governmentform, latitude, longitude )
+	      values(12, 456, 'naam', 'hoofdstad', 'Europe', 'regio' , 123, 123, 'regering' , 123, 123);*/
+	      
+	      
+	          String sql ="insert into country(code2, code, name, capital, continent, region, surfacearea, population, governmentform, latitude, longitude )" +
+	        		  	  " values("+c.getCode()+", "+c.getIso3Code()+", '"+c.getName()+"', '"+c.getCapital()+"', '"+c.getContinent()+"', '"+c.getRegion()+"' , "+c.getSurface()+", "+c.getPopulation()+", '"+c.getGovernment()+"' , "+c.getLatitude()+", "+c.getLongitude()+")"	;
+	      
+	      stmt.executeUpdate(sql);
+		}
+	catch(SQLException e){
+		e.printStackTrace();
+		}
+	}
+
+
+
+
+
 }

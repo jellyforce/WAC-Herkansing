@@ -328,7 +328,9 @@ function randomSearch(){
 }	
 
 		
-		
+function isNumber(num) {
+	  return (typeof num == 'string' || typeof num == 'number') && !isNaN(num - 0) && num !== '';
+	};		
 
 	
 	
@@ -355,126 +357,127 @@ function createCountry(){
 		var oppervlakte = $('#oppervlakte').val();
 		var populatie = $('#populatie').val();
 		var regering = $('#regering').val();
-		var hoofd = $('#landhoofd').val();
 		var lat = $('#latitude').val();
 		var lon  = $('#longtitude').val();
 		
-		//converten/checks op alle data 
 		
-		try{//kort
-			console.log("check-2");
-			kort.length <= 2;
-			console.log("check-3");
-		}catch(err){
-			//popup met de error		
+		var continentList = [ 'Europe' , 'Asia' , 'South America' , 'Antarctica' , 'North America' , 'Oceania' , 'Africa'  ];
+
+		console.log("1");
+		//checks op alle data 
+		
+		if((kort.length > 0) == false || (kort.length <=2) == false ){ // de request gaat per code, minimaal 1 code is dus verplicht
 			messageWindow("landcode (kort) is MAX 2 tekens", "red");
 		}
-		
-		try{//lang
-			(kort.length() <= 3) == true;
-		}catch(err){	
+		else if((lang.length <= 3) == false){
 			messageWindow("landcode (lang) is MAX 3 tekens", "red");
 		}
-		
-		try{//land naam
-			(naam.length() <= 52) == true;
-		}catch(err){
-			messageWindow("landnaam is MAX 52 tekens", "red");
+		else if((naam.length > 0) == false || (naam.length <= 52) == false){
+			messageWindow("landnaam  Moet ingevuld zijn  en bestaat uit MAX 52 tekens", "red");			
 		}
-		
-		try{//hoofdstad
-			(city.length() > 0) == true;
-		}catch(err){
+		else if((city.length > 0) == false){
 			messageWindow("Je moet een hoofdstad invullen", "red");
 		}
-		
-		try{//continent
-		
-			var continentList = [ 'Europe' , 'Asia' , 'South America' , 'Antarctica' , 'North America' , 'Oceania' , 'Africa'  ];
-			(continentList.indexOf(continent) > -1) == true;
-		
-		}catch(err){
+		else if((continentList.indexOf(continent) > -1) == false){
 			messageWindow("Geldige continenten zijn : Europe , Asia , South America , North America , Oceania , Africa , Antarctica ", "red");
-
 		}
-		
-		try{//regio
-			(regio.length() <= 26) == true;
-		}catch(err){
+		else if((regio.length <= 26) == false){
 			messageWindow("Regio is MAX 26 tekens", "red");
 		}
-		
-		
-		try{//oppervlakte			
-			oppervlakte = parseInt(oppervlakte); 		// string to integer
-			oppervlakte.toFixed(2);						// max 2 achter de comma			
-		}catch(err){
+		else if(isNumber(oppervlakte) == false){ 				// het moet een nummer zijn
 			messageWindow("Oppervlakte MOET een getal zijn", "red");
 		}
-		
-		try{//populatie			
-			populatie = parseInt(populatie);			// String to int
-			populatie.toFixed(0);						// max 2 achter de comma  --> halve mensen bestaan niet :)			
-		}catch(err){
+		else if(isNumber(populatie) == false){ 					// het moet een getal zijn
 			messageWindow("Populatie MOET een getal zijn", "red");
 		}
-		
-		try{//regering			
-			(regering.length() <= 45) == true;			
-		}catch(err){
+		else if((regering.length <= 45) == false){
 			messageWindow("Regering is MAX 45 tekens","red");
 		}
-		
-		try{//hoofd			
-			(hoofd.length() <= 60) == true;			
-		}catch(err){
-			messageWindow("Staatshoofd is MAX 60 tekens","red");		}
-		
-		try{//latitude
-			lat = parseInt(oppervlakte); 		// string to integer
-			lat.toFixed(2);						// max 2 achter de comma
-		}catch(err){
-			
+		else if(isNumber(lat) == false){						// het moet een getal zijn
+			messageWindow("Latitude MOET een getal zijn", "red");
 		}
-		
-		try{//longitude
-			lon = parseInt(oppervlakte); 		// string to integer
-			lon.toFixed(2);						// max 2 achter de comma
-		}catch(err){
-			
+		else if(isNumber(lon) == false){						// het moet een getal zijn
+			messageWindow("Longitude MOET een getal zijn", "red");
 		}
-									/*============================================		
-												Alle checks gehad		
-									============================================*/
+		else{
+			console.log("2");
+			// nu nog converteren waar nodig
+			try{
+				
+				oppervlakte = Number(oppervlakte);
+				oppervlakte.toFixed(2);
+				
+				populatie = Number(populatie);
+				populatie.toFixed(0);				//halve mensen bestaan niet
+
+				lat = Number(lat);
+				lat.toFixed(2);
+				
+				lon = Number(lon);
+				lon.toFixed(2);
+				
+				console.log("3");
+				
+			}catch(err){
+				messageWindow("Error met converteren:" + err, "red");
+			}
 		
 		
+			/*============================================		========================================	
+			   Alle checks/converts  nu (eindelijk) gehad   ==> 	Dan kan het de database in	
+			  ============================================		========================================*/
+			console.log("4");
+				
+			//eerst een data-object maken van alle ingevoerde gegevens voordat we deze naar de servervice sturen
+			var data = { "kort": kort, "lang": lang, "land": naam, "capital": city, "continent": continent, "regio": regio,	"oppervlakte": oppervlakte, "populatie": populatie, "regering": regering, "latitude": lat, "longitude": lon};
+/*			data.kort = kort;
+			data.lang = lang;
+			data.naam = naam;
+			data.capital = city;
+			data.continent = continent;
+			data.regio = regio;
+			data.oppervlakte = oppervlakte;
+			data.populatie = populatie;
+			data.regering = regering;
+			data.latitude = latitude;
+			data.longitude = longitude;*/
+				
+			//omzetten naar een voor de servervice te begrijpen formaat
+			var JSONdata = JSON.stringify(data);
+			
 		
+			
+			
+				
+			$.post("/firstapp/restservices/countries/"+kort, JSONdata, function(response) {
+				console.log(response);
+				//jsonobject maken van response
+				
+				
+				console.log(response.naam);
+				//opdelen in in land: voor aangemaakt lang voor op de pagina () . append  voor de pagina
+				//				response : bericht voor op de messagebox
+				
+				
+				messageWindow("Response:" + response.response, "red");
+
+				var landElement = "<div id='response-country-name'>"+response.naam+"</div>";
+
+	
+				$('#toegevoegde-landen-content').append(landElement);
+
+				}); 
+			
 		
-		
-		
-		
+		}	
+			
+			
+			
 		
 		
 	}catch(err){
-		
+		messageWindow("Error:" + err, "red");
 	}
-	
-	
-	
-/*	
-	
-	//eerst een data-object maken van alle ingevoerde gegevens voordat we deze naar de servervice sturen
-	var data = { "kort": $('#landcode-kort').val(), "lang": $('#landcode-lang'), "land": $('#land_naam').val(), "capital": $('#hoofdstad').val(), "continent": $('#continent').val(), "regio": $('#regio').val(), "oppervlakte": $('#oppervlakte').val(), "populatie": $('#populatie').val(), "regering": $('#regering').val(), "landhoofd": $('#landhoofd').val(), "latitude": $('#latitude').val(), "longtitude": $('#longtitude').val()}
-	
-	//omzetten naar een voor de servervice te begrijpen formaat
-	var JSONdata = JSON.stringify("DATA: " +data);	
-
-	
-    $.post("/firstapp/restservices/customer", JSONdata, function(response) {
-        $("#response").text(JSON.stringify(response));
-    }); */
-
-
 }
 	
 	
@@ -498,7 +501,7 @@ function removeCountry(){
 	
 	/*
 	=================================================
-		-8-			Functie: 	Land wijzigen 		==>  PUT REQUEST
+		-8-			Functie: 	Land wijzigen 		==>  PUT REQUEST   ===> nagenoeg dezelfde functie als createCountry(); (zelfde checks)
 	=================================================
 	
 */	

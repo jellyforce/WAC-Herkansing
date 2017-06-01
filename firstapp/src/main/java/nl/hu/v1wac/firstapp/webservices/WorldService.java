@@ -33,4 +33,8 @@ public class WorldService {
 	public boolean deleteCountry(String code){
 		return countryDAO.delete(code);
 	}
+
+	public void createCountry(Country c) {
+		countryDAO.Insert(c);
+	}
 }
