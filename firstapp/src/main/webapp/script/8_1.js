@@ -66,8 +66,8 @@ function messageWindow(message, color){
 	messagebox.style.backgroundColor = color;
 		
 	//laat de messagebox zien voor x..tijd
-	$('#messagebox').fadeIn(2000, function(){
-		$('#messagebox').fadeOut(2000);
+	$('#messagebox').fadeIn(1000, function(){
+		$('#messagebox').fadeOut(5000);
 	});
 }
 
@@ -342,8 +342,139 @@ function randomSearch(){
 	
 function createCountry(){
 	
-	/*var data = {  ""}*/
+	//validatie van alle data, lengte/converteren
+	try{
+		console.log("check-1");
+		//alle data ophalen uit de elementen	
+		var kort = $('#landcode-kort').val();
+		var lang = $('#landcode-lang').val();
+		var naam = $('#land_naam').val();
+		var city = $('#hoofdstad').val();
+		var continent = $('#continent').val();
+		var regio = $('#regio').val();
+		var oppervlakte = $('#oppervlakte').val();
+		var populatie = $('#populatie').val();
+		var regering = $('#regering').val();
+		var hoofd = $('#landhoofd').val();
+		var lat = $('#latitude').val();
+		var lon  = $('#longtitude').val();
+		
+		//converten/checks op alle data 
+		
+		try{//kort
+			console.log("check-2");
+			kort.length <= 2;
+			console.log("check-3");
+		}catch(err){
+			//popup met de error		
+			messageWindow("landcode (kort) is MAX 2 tekens", "red");
+		}
+		
+		try{//lang
+			(kort.length() <= 3) == true;
+		}catch(err){	
+			messageWindow("landcode (lang) is MAX 3 tekens", "red");
+		}
+		
+		try{//land naam
+			(naam.length() <= 52) == true;
+		}catch(err){
+			messageWindow("landnaam is MAX 52 tekens", "red");
+		}
+		
+		try{//hoofdstad
+			(city.length() > 0) == true;
+		}catch(err){
+			messageWindow("Je moet een hoofdstad invullen", "red");
+		}
+		
+		try{//continent
+		
+			var continentList = [ 'Europe' , 'Asia' , 'South America' , 'Antarctica' , 'North America' , 'Oceania' , 'Africa'  ];
+			(continentList.indexOf(continent) > -1) == true;
+		
+		}catch(err){
+			messageWindow("Geldige continenten zijn : Europe , Asia , South America , North America , Oceania , Africa , Antarctica ", "red");
+
+		}
+		
+		try{//regio
+			(regio.length() <= 26) == true;
+		}catch(err){
+			messageWindow("Regio is MAX 26 tekens", "red");
+		}
+		
+		
+		try{//oppervlakte			
+			oppervlakte = parseInt(oppervlakte); 		// string to integer
+			oppervlakte.toFixed(2);						// max 2 achter de comma			
+		}catch(err){
+			messageWindow("Oppervlakte MOET een getal zijn", "red");
+		}
+		
+		try{//populatie			
+			populatie = parseInt(populatie);			// String to int
+			populatie.toFixed(0);						// max 2 achter de comma  --> halve mensen bestaan niet :)			
+		}catch(err){
+			messageWindow("Populatie MOET een getal zijn", "red");
+		}
+		
+		try{//regering			
+			(regering.length() <= 45) == true;			
+		}catch(err){
+			messageWindow("Regering is MAX 45 tekens","red");
+		}
+		
+		try{//hoofd			
+			(hoofd.length() <= 60) == true;			
+		}catch(err){
+			messageWindow("Staatshoofd is MAX 60 tekens","red");		}
+		
+		try{//latitude
+			lat = parseInt(oppervlakte); 		// string to integer
+			lat.toFixed(2);						// max 2 achter de comma
+		}catch(err){
+			
+		}
+		
+		try{//longitude
+			lon = parseInt(oppervlakte); 		// string to integer
+			lon.toFixed(2);						// max 2 achter de comma
+		}catch(err){
+			
+		}
+									/*============================================		
+												Alle checks gehad		
+									============================================*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}catch(err){
+		
+	}
 	
+	
+	
+/*	
+	
+	//eerst een data-object maken van alle ingevoerde gegevens voordat we deze naar de servervice sturen
+	var data = { "kort": $('#landcode-kort').val(), "lang": $('#landcode-lang'), "land": $('#land_naam').val(), "capital": $('#hoofdstad').val(), "continent": $('#continent').val(), "regio": $('#regio').val(), "oppervlakte": $('#oppervlakte').val(), "populatie": $('#populatie').val(), "regering": $('#regering').val(), "landhoofd": $('#landhoofd').val(), "latitude": $('#latitude').val(), "longtitude": $('#longtitude').val()}
+	
+	//omzetten naar een voor de servervice te begrijpen formaat
+	var JSONdata = JSON.stringify("DATA: " +data);	
+
+	
+    $.post("/firstapp/restservices/customer", JSONdata, function(response) {
+        $("#response").text(JSON.stringify(response));
+    }); */
+
+
 }
 	
 	
