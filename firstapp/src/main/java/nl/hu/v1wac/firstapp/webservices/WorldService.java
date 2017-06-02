@@ -37,4 +37,9 @@ public class WorldService {
 	public void createCountry(Country c) {
 		countryDAO.Insert(c);
 	}
+
+	public void adjustCountry(Country c) {
+		countryDAO.Adjust(c);
+		
+	}
 }

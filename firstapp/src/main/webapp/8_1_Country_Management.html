@@ -310,38 +310,43 @@
 		<div id="toevoegen-content">
 			<div id="title"><label id="land-invoer-header">Je bekijkt nu:       </label><div  style=" font-size: 20px;"></div></div>
 		
-				<div id="centered">
-
-
-					<label>landcode</label>
-					<input id="input-landcode" type="text" name="landcode"></input><br/>
+				<div id="wijzig-links">
+					<label>landcode (kort)</label><br/>
+					<input id="input-landcode-kort" type="text" name="landcode"></input><br/>
 					
-			    	<label>land naam</label>
+					<label>landcode (lang)</label><br/>
+					<input id="input-landcode-lang" type="text" name="landcode"></input><br/>
+					
+			    	<label>land naam</label><br/>
 					<input id="input-land_naam" type="text" name="land_naam"></input><br/>
 					
-			    	<label>Hoofdstad</label>		
+			    	<label>Hoofdstad</label><br/>	
 					<input id="input-hoofdstad" type="text" name="hoofdstad"></input><br/>
 					
-			    	<label>Continent</label>				
+			    	<label>Continent</label><br/>				
 					<input id="input-continent" type="text" name="continent"></input><br/>
 
-			    	<label>regio</label>		
+			    	<label>regio</label><br/>		
 					<input id="input-regio" type="text" name="regio"></input><br/>
-					
-					<label>Oppervlakte</label>
+				</div>
+				
+				<div id="wijzig-rechts">
+					<label>Oppervlakte</label><br/>
 					<input id="input-oppervlakte" type="text" name="oppervlakte"></input><br/>
 					
-					<label>Populatie</label>
+					<label>Populatie</label><br/>
 					<input id="input-populatie" type="text" name="populatie"></input><br/>
 					
-			    	<label>Regering</label>				
+			    	<label>Regering</label><br/>				
 					<input id="input-regering" type="text" name="regering"></input><br/>
 					
-					<label>Latitude</label>
+					<label>Latitude</label><br/>
 					<input id="input-latitude" type="text" name="latitude"></input><br/>
 					
-					<label>Longtitude</label>
+					<label>Longtitude</label><br/>
 					<input id="input-longtitude" type="text" name="longtitude"></input><br/>
+					
+					<input id="hidden-code" style="visibility: hidden;"></input>
 				</div>
 		
 	
@@ -362,8 +367,8 @@
 				
 				<div id="land-container-btns">					
 					<div id="land-bewerk-btn" onclick="closeCountryPage();">Sluiten</div>
-					<div id="land-bewerk-btn" style="background-color: green; opacity: .8;">Doorvoeren</div>
-					<div id="land-bewerk-btn" style="background-color: red; opacity: .8">Verwijder</div>
+					<div id="land-bewerk-btn-doorvoeren" onclick="adjustCountry();">Doorvoeren</div>
+					<div id="land-bewerk-btn-verwijderen" onclick="removeCountry();">Verwijder</div>
 				</div>	
 			</div>
 		

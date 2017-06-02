@@ -17,41 +17,55 @@ $(document).ready(function(){
 
 //home-knop
 $("#menu-home").click(function(){
-	$('#home').hide();
 	$('#toevoegen').hide();
 	$('#search').hide();
+	$('#land-pagina').hide();
+	$('#home').hide();
+	
 	$('#home').fadeIn(1000);
 });
 
 
 //add-knop
 $('#menu-item1').click(function(){
-	$('#home').hide();
 	$('#toevoegen').hide();
 	$('#search').hide();
+	$('#land-pagina').hide();
+	$('#home').hide();
+
+	
 	$('#toevoegen').fadeIn(1000);
 });
 
 //search-knop
 $('#menu-item2').click(function(){
-	$('#home').hide();
 	$('#toevoegen').hide();
-	$('#search').hide();	
+	$('#search').hide();
+	$('#land-pagina').hide();
+	$('#home').hide();
+
+		
 	$('#search').fadeIn(1000);
 });
 	
 
 function showCountryPage(){
-	$('#home').hide();
 	$('#toevoegen').hide();
-	$('#search').hide();	
+	$('#search').hide();
+	$('#land-pagina').hide();
+	$('#home').hide();
+
+		
 	$('#land-pagina').fadeIn(1000);
 }	
 	
 function closeCountryPage(){
-	$('#home').hide();
 	$('#toevoegen').hide();
-	$('#land-pagina').hide();	
+	$('#search').hide();
+	$('#land-pagina').hide();
+	$('#home').hide();
+
+		
 	$('#search').fadeIn(1000);
 }
 
@@ -95,17 +109,27 @@ function landOphalen(code){
 			console.log(data);
 		// vullen van de section met id="land-pagina"
 			
-			document.getElementById("input-landcode").value = data.code;
+			document.getElementById("input-landcode-kort").value = data.code;
+			document.getElementById("input-landcode-lang").value = data.code2;
 			document.getElementById("input-land_naam").value = data.Land;
 			document.getElementById("input-hoofdstad").value = data.capital;
 			document.getElementById("input-continent").value = data.continent;
 			document.getElementById("input-regio").value = data.region;
 			document.getElementById("input-oppervlakte").value = data.surface;
 			document.getElementById("input-populatie").value = data.population;
-			document.getElementById("input-regering").value = data.gouvernment;
+			document.getElementById("input-regering").value = data.government;
 			document.getElementById("input-latitude").value = data.latitude;
 			document.getElementById("input-longtitude").value = data.longitude;
 			document.getElementById("land-invoer-header").append(data.name);
+			document.getElementById('hidden-code').value = data.code2;
+			
+			
+			//alvast instellen dat als je op een land klikt dat ook de wijzig en delete knop
+			// een eventhandler krijgen waarbij de "code" als parameter gegeven wordt
+			//eerst verwijderen (als er nog een vorige was)
+			
+			
+			//dan toevoegen van de nieuwe
 			
 			
 			//laat nu de pagina zien waarop al deze informatie staat
@@ -150,7 +174,7 @@ function alleLanden(){
 		
 		$.getJSON("http://localhost:8070/firstapp/restservices/countries","jsonp" ,function(data){			
 			$.each(data, function(k, v){
-				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
+				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
 			
 
@@ -204,7 +228,7 @@ function grootsteOppervlaktes(){
 		
 		$.getJSON("http://localhost:8070/firstapp/restservices/countries/largestsurfaces","jsonp" ,function(data){			
 			$.each(data, function(k, v){
-				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
+				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
 			
 			$('#keuze-invoer-header').empty();
@@ -248,7 +272,7 @@ function grootstePopulaties(){
 		
 		$.getJSON("http://localhost:8070/firstapp/restservices/countries/largestpopulations","jsonp" ,function(data){			
 			$.each(data, function(k, v){
-				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
+				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
 			
 			$('#keuze-invoer-header').empty();
@@ -302,7 +326,7 @@ function randomSearch(){
 				$.each(data, function(k, v){
 					console.log(data);
 					
-					$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
+					$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 							
 				});
 				
@@ -459,7 +483,7 @@ function createCountry(){
 				//				response : bericht voor op de messagebox
 				
 				
-				messageWindow("Response:" + response.response, "red");
+				messageWindow("Response:" + response.response, "green");
 
 				var landElement = "<div id='response-country-name'>"+response.naam+"</div>";
 
@@ -480,34 +504,177 @@ function createCountry(){
 	}
 }
 	
-	
-	
-	/*
-	=================================================
-		-7-			Functie: 	Land Verwijderen   ==>	DELETE REQUEST
-	=================================================
-	
+/*
+=================================================
+	-7-			Functie: 	Land wijzigen 		==>  PUT REQUEST   ===> nagenoeg dezelfde functie als createCountry(); (zelfde checks)
+=================================================
+
 */	
+
+
+function adjustCountry(){
+alert("aanpassen");
+
+	//haal de code op van het land
+	var landcode = $("#input-landcode-lang").val();
+	console.log(landcode);
 	
+	//ook de hidden-field met landcode 
+	//(als mensen ineens een andere landcode invullen die anders is dan het opgehaalde land)
+	
+	var hiddenLandcode = $("#hidden-code").val();
+	console.log(hiddenLandcode);
+	
+	
+	if(landcode != hiddenLandcode){
+		messageWindow("Error: Je landcode klopt niet meer. Verander terug of laad de data opnieuw in" , "yellow");
+	}
+	else{// ga het land aanpassen in de database
 		
-	
-function removeCountry(){
-	
-	
-	
-}
-	
-	
+		//validatie van alle data, lengte/converteren  --> net als bij het toevoegen van een land
+		try{
+			console.log("check-1");
+			//alle data ophalen uit de elementen	
+			var kort = $('#input-landcode-kort').val();
+			var lang = $('#input-landcode-lang').val();
+			var naam = $('#input-land_naam').val();
+			var city = $('#input-hoofdstad').val();
+			var continent = $('#input-continent').val();
+			var regio = $('#input-regio').val();
+			var oppervlakte = $('#input-oppervlakte').val();
+			var populatie = $('#input-populatie').val();
+			var regering = $('#input-regering').val();
+			var lat = $('#input-latitude').val();
+			var lon  = $('#input-longtitude').val();
+			
+			
+			var continentList = [ 'Europe' , 'Asia' , 'South America' , 'Antarctica' , 'North America' , 'Oceania' , 'Africa'  ];
+
+			console.log("1");
+			//checks op alle data 
+			
+			if((kort.length <=2) == false ){ 
+				messageWindow("landcode (kort) is MAX 2 tekens", "red");
+			}
+			else if((lang.length > 0) == false || (lang.length <=3) == false){// de request gaat per code, minimaal 1 code is dus verplicht
+				messageWindow("landcode (lang) is MAX 3 tekens", "red");
+			}
+			else if((naam.length > 0) == false || (naam.length <= 52) == false){
+				messageWindow("landnaam  Moet ingevuld zijn  en bestaat uit MAX 52 tekens", "red");			
+			}
+			else if((city.length > 0) == false){
+				messageWindow("Je moet een hoofdstad invullen", "red");
+			}
+			else if((continentList.indexOf(continent) > -1) == false){
+				messageWindow("Geldige continenten zijn : Europe , Asia , South America , North America , Oceania , Africa , Antarctica ", "red");
+			}
+			else if((regio.length <= 26) == false){
+				messageWindow("Regio is MAX 26 tekens", "red");
+			}
+			else if(isNumber(oppervlakte) == false){ 				// het moet een nummer zijn
+				messageWindow("Oppervlakte MOET een getal zijn", "red");
+			}
+			else if(isNumber(populatie) == false){ 					// het moet een getal zijn
+				messageWindow("Populatie MOET een getal zijn", "red");
+			}
+			else if((regering.length <= 45) == false){
+				messageWindow("Regering is MAX 45 tekens","red");
+			}
+			else if(isNumber(lat) == false){						// het moet een getal zijn
+				messageWindow("Latitude MOET een getal zijn", "red");
+			}
+			else if(isNumber(lon) == false){						// het moet een getal zijn
+				messageWindow("Longitude MOET een getal zijn", "red");
+			}
+			else{
+				console.log("2");
+				// nu nog converteren waar nodig
+				try{
+					
+					oppervlakte = Number(oppervlakte);
+					oppervlakte.toFixed(2);
+					
+					populatie = Number(populatie);
+					populatie.toFixed(0);				//halve mensen bestaan niet
+
+					lat = Number(lat);
+					lat.toFixed(2);
+					
+					lon = Number(lon);
+					lon.toFixed(2);
+					
+					console.log("3");
+					
+				}catch(err){
+					messageWindow("Error met converteren:" + err, "red");
+				}
+			
+			
+				/*============================================		========================================	
+				   Alle checks/converts  nu (eindelijk) gehad   ==> 	Dan kan het de database in	
+				  ============================================		========================================*/
+				
+				
+				console.log("4");
+					
+				//eerst een data-object maken van alle ingevoerde gegevens voordat we deze naar de servervice sturen
+				var data = { "kort": kort, "lang": lang, "land": naam, "capital": city, "continent": continent, "regio": regio,	"oppervlakte": oppervlakte, "populatie": populatie, "regering": regering, "latitude": lat, "longitude": lon};
+
+					
+				//omzetten naar een voor de servervice te begrijpen formaat
+				var JSONdata = JSON.stringify(data);
+				
+			
+				$.ajax("/firstapp/restservices/countries/"+lang,{
+					type: "put",
+					data: JSONdata,
+					succes: function(response){
+						
+						messageWindow("Response:" + response.response, "green");
+
+					},
+					error: function(response){
+						messageWindow("Response AJAX-Call:" + response.response, "red");
+					}
+				});
+			}			
+		}catch(err){
+			messageWindow("Error:" + err, "red");
+		}		
+	}
+}	
 	
 	/*
 	=================================================
-		-8-			Functie: 	Land wijzigen 		==>  PUT REQUEST   ===> nagenoeg dezelfde functie als createCountry(); (zelfde checks)
+		-8-			Functie: 	Land Verwijderen   ==>	DELETE REQUEST
 	=================================================
 	
 */	
 	
 
-function adjustCountry(){
+	
+function removeCountry(){
+	alert("verwijderen");
+	
+	//haal de code op van het land
+	var landcode = $("#input-landcode-kort").val();
+	console.log(landcode);
+	
+	//ook de hidden-field met landcode 
+	//(als mensen ineens een andere landcode invullen die anders is dan het opgehaalde land)
+	
+	var hiddenLandcode = $("#hidden-code").val();
+	console.log(hiddenLandcode);
 	
 	
+	if(landcode != hiddenLandcode){
+		messageWindow("Error: Je landcode klopt niet meer. Verander terug of laad de data opnieuw in" , "yellow");
+	}
+	else{// verwijder het land uit de database
+		
+	}
 }
+	
+	
+	
+

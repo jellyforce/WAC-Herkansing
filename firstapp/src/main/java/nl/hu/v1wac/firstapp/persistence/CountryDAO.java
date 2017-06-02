@@ -43,7 +43,7 @@ public class CountryDAO extends BaseDAO {
   }
   
   public Country findByCode(String incode){
-    return selectCountry("SELECT * FROM country WHERE code2 = '"+ incode + "'" ).get(0);
+    return selectCountry("SELECT * FROM country WHERE code = '"+ incode + "'" ).get(0);
   }
   
   public List<Country> find10LargestPopulations() {
@@ -143,6 +143,42 @@ public void Insert(Country c) {
 		e.printStackTrace();
 		}
 	}
+
+
+
+
+/*===============================  
+	Wijzigen Land	
+===============================
+*/
+
+
+
+
+public void Adjust(Country c) {
+	try (Connection con = super.getConnection()) {
+		
+		
+		
+		
+	      Statement stmt = con.createStatement();
+	          
+/*	          String sql = "UPDATE country"+
+	          				"Set code2 = '"+c.getCode()+"' , name = '"+c.getName()+"', capital = '"+c.getCapital()+"', continent = '"+c.getContinent()+"', region = '"+c.getRegion()+"', surfacearea = "+c.getSurface()+", population = "+c.getPopulation()+", governmentform = '"+c.getGovernment()+"', latitude ="+c.getLatitude()+", longitude = "+c.getLongitude()+" "+
+	          				"WHERE code = '"+c.getIso3Code()+"'";*/
+	          
+	      String sql ="UPDATE country set code2 = '"+c.getCode()+"' , name = '"+c.getName()+"', capital = '"+c.getCapital()+"', continent = '"+c.getContinent()+"', region = '"+c.getRegion()+"', surfacearea = "+c.getSurface()+", population = "+c.getPopulation()+", governmentform = '"+c.getGovernment()+"', latitude = "+c.getLatitude()+", longitude = "+c.getLongitude()+""+
+	    		  	"WHERE code = '"+c.getIso3Code()+"'";
+	          
+	      
+	      stmt.executeUpdate(sql);
+		}
+	catch(SQLException e){
+		e.printStackTrace();
+		}
+	}
+	
+
 
 
 

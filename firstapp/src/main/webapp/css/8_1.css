@@ -517,32 +517,76 @@ tr:hover{
 
 
 
-#centered{
-	margin-left: auto;
-	margin-right: auto;
+#wijzig-links{
+	float: left;
 	margin-top: 20px;
-	width: 40%;
+	width: 50%;
 	heigth: 49vh;
 }
 
 
-#centered label{
+#wijzig-links label{
 	margin-top: 10px;
-	margin-left: 5px;
+	margin-left: 30px;
 	margin-right: auto;
 	margin-top: 5px;
 	width: 100%;
-	height: 15px;
-	font-size: 15px;
+	height: 20px;
+	font-size: 20px;
 	color: gray;
 }
 
-#centered input{
-	margin-left: auto;
+#wijzig-links input{
+	margin-left: 30px;
 	margin-right: auto;
-	width: 100%;
-	height: 15px;
+	margin-bottom: 10px;
+	width: 70%;
+	height: 20px;
 }
+
+
+#wijzig-rechts{
+	float: left;
+	margin-top: 20px;
+	width: 49%;
+	heigth: 49vh;
+}
+
+
+#wijzig-rechts label{
+	margin-top: 10px;
+	margin-left: 30px;
+	margin-right: auto;
+	margin-top: 5px;
+	width: 100%;
+	height: 20px;
+	font-size: 20px;
+	color: gray;
+}
+
+#wijzig-rechts input{
+	margin-left: 30px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 70%;
+	height: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #land-bewerking-sectie{
 	float: left;
@@ -587,9 +631,35 @@ tr:hover{
 	line-height: 50px;
 	background-color: #76afff;
 	cursor: pointer;
-	font-size: 25px;
-	
+	font-size: 25px;	
 }  
+
+#land-bewerk-btn-doorvoeren{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+	width: 50%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: green;
+	cursor: pointer;
+	font-size: 25px;
+	opacity: .8;	
+}
+#land-bewerk-btn-verwijderen{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+	width: 50%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: red;
+	cursor: pointer;
+	font-size: 25px;
+	opacity: .8;	
+}
   
  #toegevoegde-landen-content{
  	overflow: auto;

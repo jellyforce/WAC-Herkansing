@@ -9,6 +9,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,6 +26,7 @@ public class WorldResource {
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
+			job.add("code2", country.getIso3Code());
 			job.add("name", country.getName());
 			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
@@ -52,6 +54,7 @@ public class WorldResource {
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		job.add("Land", country.getName());
 		job.add("code", country.getCode());
+		job.add("code2", country.getIso3Code());
 		job.add("name", country.getName());
 		job.add("capital", country.getCapital());
 		job.add("continent", country.getContinent());
@@ -114,12 +117,69 @@ public class WorldResource {
 			job.add("response", response );	
 			
 		}
+	    
+
+	    return job.build().toString();
+	  }
+	
+	
+/*=======================================
+	Land Wijzigen 						===> PUT
+=========================================
+*/			
+
+
+	
+	@PUT
+	@Path("{code}")
+	  @Produces("application/json")
+	  public String  countryAdjust(InputStream is) {
+		// data opvangen
+		JsonObject object = Json.createReader(is).readObject();
+	    
+		//uitlezen
+		String code2 = object.getString("kort");
+		String code3 = object.getString("lang");
+		String land = object.getString("land");
+		String capital = object.getString("capital");
+		String continent = object.getString("continent");
+		String regio = object.getString("regio");
+		double oppervlakte = object.getInt("oppervlakte");
+		int populatie = object.getInt("populatie");
+		String regering = object.getString("regering");
+		double lat = object.getInt("latitude");
+		double lon = object.getInt("longitude");
+		
+		
+		JsonObjectBuilder job = Json.createObjectBuilder();
+		String response = "";
+		
+		try{
+
+			//land-object maken
+			Country newCountry = new Country(code2, code3, land, capital, continent, regio, oppervlakte, populatie, regering, lat, lon);
+
+		    //Service aanroepen
+			WorldService service = ServiceProvider.getWorldService();
+		    service.adjustCountry(newCountry);    
+	    
+		    response = "Server heeft land:"+newCountry.getName()+" gewijzigt";
+		    job.add("response", response );	
+		    job.add("naam",newCountry.getName());
+			
+		}catch(Error e){	
+			
+			response = "Fout met wijzigen: " + e.toString();
+			job.add("response", response );	
+			
+		}
 		
 
 	    
 
 	    return job.build().toString();
 	  }
+
 
 	
 	
@@ -137,6 +197,7 @@ public class WorldResource {
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
+			job.add("code2", country.getIso3Code());
 			job.add("name", country.getName());
 			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
@@ -164,6 +225,7 @@ public class WorldResource {
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
+			job.add("code2", country.getIso3Code());
 			job.add("name", country.getName());
 			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
@@ -192,6 +254,7 @@ public class WorldResource {
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("Land", country.getName());
 			job.add("code", country.getCode());
+			job.add("code2", country.getIso3Code());
 			job.add("name", country.getName());
 			job.add("capital", country.getCapital());
 			job.add("continent", country.getContinent());
