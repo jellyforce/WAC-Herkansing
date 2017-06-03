@@ -18,6 +18,7 @@
 		
 							<h1>Ik wil naar:</h1>
 			
+			
 		
 			 <div id="menu-box">
 				
@@ -29,7 +30,10 @@
 					</div>
 				<div id="menu-item2" class="menu-btn">
 					<p id="button-text">Search</p>
-				</div>	
+				</div>
+				<div id="menu-login" class="menu-btn">
+					<p id="button-text">Login</p>
+				</div>					
 			</div>
 			
 		</div>
@@ -370,18 +374,44 @@
 					<div id="land-bewerk-btn-doorvoeren" onclick="adjustCountry();">Doorvoeren</div>
 					<div id="land-bewerk-btn-verwijderen" onclick="removeCountry();">Verwijder</div>
 				</div>	
+			</div>	
+	</section>
+
+	<section id="login">
+		<div id="title">Login pagina</div>
+		
+		<h1 style="color: black;">Waarom inloggen?</h1>
+		
+		<p>Inloggen is niet verplicht maar het geeft wel een aantal voordelen</p>
+		<p>Zo kunt u niet alleen de data bekijken, maar ook:</p>
+		
+		<br/>
+
+		<ul id="list-opties">
+			<li>Nieuwe landen toevoegen</li>
+			<li>Landen bewerken</li>
+			<li>Landen verwijderen</li>
+		</ul>
+		
+		<div id="login-container">
+			<div style="width: 60%; float: left; ">
+				<form id="login-form">
+					<label>Username</label><br/>
+					<input type="text" name="username"></input><br/>
+					<label>Password</label><br/>
+					<input type="password" name="password"></input><br/>
+					<input style="visibility: hidden;"></input><br/>
+				</form>
 			</div>
-		
-		
-		
-		
-		
-		
-		
+			<div style="width: 40%; height: 147px; float: left; background-color: lightgray;">
+				<div id="login-form-button" onclick="userLogin();">
+					<p id="login-text">Login</p>
+				</div>	
+			</div>
+		</div>		
 		
 		
 	</section>
-
 
 
 

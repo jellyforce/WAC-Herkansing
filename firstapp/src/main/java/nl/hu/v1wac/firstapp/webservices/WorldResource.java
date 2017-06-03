@@ -2,6 +2,7 @@ package nl.hu.v1wac.firstapp.webservices;
 
 import java.io.InputStream;
 
+import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -77,6 +78,7 @@ public class WorldResource {
 	
 	@POST
 	@Path("{code}")
+	@RolesAllowed("user")
 	  @Produces("application/json")
 	  public String  countryInput(InputStream is) {
 		// data opvangen
@@ -133,6 +135,7 @@ public class WorldResource {
 	
 	@PUT
 	@Path("{code}")
+	@RolesAllowed("user")
 	  @Produces("application/json")
 	  public String  countryAdjust(InputStream is) {
 		// data opvangen
@@ -188,6 +191,7 @@ public class WorldResource {
 
 	@DELETE
 	@Path("{code}")
+	@RolesAllowed("user")
 	@Produces("application/json")
 	public String deleteCountry(@PathParam("code") String code) {
 		WorldService service = ServiceProvider.getWorldService();

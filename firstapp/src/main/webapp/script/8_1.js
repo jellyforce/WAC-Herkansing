@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	
 	//verbergen van elementen
+	$('#home').hide();
 	$('#toevoegen').hide();
 	$('#search').hide();
 	$('#land-pagina').hide();
@@ -21,6 +22,7 @@ $("#menu-home").click(function(){
 	$('#search').hide();
 	$('#land-pagina').hide();
 	$('#home').hide();
+	$('#login').hide();
 	
 	$('#home').fadeIn(1000);
 });
@@ -32,6 +34,7 @@ $('#menu-item1').click(function(){
 	$('#search').hide();
 	$('#land-pagina').hide();
 	$('#home').hide();
+	$('#login').hide();
 
 	
 	$('#toevoegen').fadeIn(1000);
@@ -43,10 +46,21 @@ $('#menu-item2').click(function(){
 	$('#search').hide();
 	$('#land-pagina').hide();
 	$('#home').hide();
+	$('#login').hide();
 
 		
 	$('#search').fadeIn(1000);
 });
+
+$('#menu-login').click(function(){
+	$('#toevoegen').hide();
+	$('#search').hide();
+	$('#land-pagina').hide();
+	$('#home').hide();
+	$('#login').hide();
+
+	$('#login').fadeIn(1000);	
+})
 	
 
 function showCountryPage(){
@@ -54,6 +68,7 @@ function showCountryPage(){
 	$('#search').hide();
 	$('#land-pagina').hide();
 	$('#home').hide();
+	$('#login').hide();
 
 		
 	$('#land-pagina').fadeIn(1000);
@@ -64,6 +79,7 @@ function closeCountryPage(){
 	$('#search').hide();
 	$('#land-pagina').hide();
 	$('#home').hide();
+	$('#login').hide();
 
 		
 	$('#search').fadeIn(1000);
@@ -469,37 +485,35 @@ function createCountry(){
 			//omzetten naar een voor de servervice te begrijpen formaat
 			var JSONdata = JSON.stringify(data);
 			
-		
 			
 			
-				
-			$.post("/firstapp/restservices/countries/"+kort, JSONdata, function(response) {
-				console.log(response);
-				//jsonobject maken van response
-				
-				
-				console.log(response.naam);
-				//opdelen in in land: voor aangemaakt lang voor op de pagina () . append  voor de pagina
-				//				response : bericht voor op de messagebox
-				
-				
-				messageWindow("Response:" + response.response, "green");
+			
+			$.ajax("/firstapp/restservices/countries/"+kort,{
+				type: "post",
+				data: JSONdata,
+			    beforeSend: function (xhr) { // je moet ingelogged zijn om het te mogen uitvoeren (token ophalen)
+			        var token = window.sessionStorage.getItem("sessionToken");
+			        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+			    },
 
-				var landElement = "<div id='response-country-name'>"+response.naam+"</div>";
+				success: function(response){
+					$('#land-pagina').hide();
+					$('#search').fadeIn(1000);
+					
+					var landElement = "<div id='response-country-name'>"+response.naam+"</div>";
+					$('#toegevoegde-landen-content').append(landElement);
+					
+					messageWindow("Response:" + response.response, "green");
 
-	
-				$('#toegevoegde-landen-content').append(landElement);
 
-				}); 
-			
-		
-		}	
-			
-			
-			
-		
-		
-	}catch(err){
+				},
+				error: function(response){
+					messageWindow("Error response AJAX POST: " + response.response, "red");
+				}
+			});
+		}		
+	}
+	catch(err){
 		messageWindow("Error:" + err, "red");
 	}
 }
@@ -627,6 +641,11 @@ function adjustCountry(){
 				$.ajax("/firstapp/restservices/countries/"+lang,{
 					type: "put",
 					data: JSONdata,
+				    beforeSend: function (xhr) { // je moet ingelogged zijn om het te mogen uitvoeren (token ophalen)
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				    },
+
 					success: function(response){
 						randomSearch();
 						$('#land-pagina').hide();
@@ -676,8 +695,12 @@ function removeCountry(){
 		try{
 			$.ajax("/firstapp/restservices/countries/"+landcode,{
 				type: "delete",
+				beforeSend: function (xhr) { // je moet ingelogged zijn om het te mogen uitvoeren (token ophalen)
+			        var token = window.sessionStorage.getItem("sessionToken");
+			        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+			    },
+			    
 				success: function(response){
-					randomSearch();
 					$('#land-pagina').hide();
 					$('#search').fadeIn(1000);
 					messageWindow("Response:" + response.response, "green");
@@ -697,6 +720,37 @@ function removeCountry(){
 
 		}
 	}
+}
+
+
+
+/*
+=================================================
+	-9-			Functie: 	LOGIN 
+=================================================
+
+*/	
+
+
+
+
+function userLogin(){
+	
+	
+
+		var data = $('#login-form').serialize();
+		$.post("/firstapp/restservices/authentication", data, function(response){
+			window.sessionStorage.setItem("sessionToken", response);	
+
+				$('#login').hide();
+				$('#home').fadeIn(1000);
+
+
+			
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+		    console.log(textStatus);
+		    console.log(errorThrown);
+		  });	
 }
 	
 	
