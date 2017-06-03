@@ -42,5 +42,11 @@
 			<artifactId>javax.json</artifactId>
 			<version>1.0.4</version>
 		</dependency>
+
+		<dependency><!-- practicum 9.2 stap 3 -->
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
+		</dependency>
 	</dependencies>
 </project>
