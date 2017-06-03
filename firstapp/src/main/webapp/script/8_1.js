@@ -127,9 +127,9 @@ function clearTable(){
 function landOphalen(code){
 		
 		try{
-			
-		
-		$.getJSON("http://localhost:8070/firstapp/restservices/countries/"+code,+"jsonp" ,function(data){			
+			/*http://localhost:8070*/	
+	
+		$.getJSON("/firstapp/restservices/countries/"+code,+"jsonp" ,function(data){			
 
 			console.log(data);
 		// vullen van de section met id="land-pagina"
@@ -195,9 +195,9 @@ function alleLanden(){
 	
 	
 	try{
-		
-		
-		$.getJSON("http://localhost:8070/firstapp/restservices/countries","jsonp" ,function(data){			
+		/*http://localhost:8070
+*/		
+		$.getJSON("/firstapp/restservices/countries","jsonp" ,function(data){			
 			$.each(data, function(k, v){
 				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
@@ -251,7 +251,9 @@ function grootsteOppervlaktes(){
 	
 	try{
 		
-		$.getJSON("http://localhost:8070/firstapp/restservices/countries/largestsurfaces","jsonp" ,function(data){			
+		/*http://localhost:8070
+*/		
+		$.getJSON("/firstapp/restservices/countries/largestsurfaces","jsonp" ,function(data){			
 			$.each(data, function(k, v){
 				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
@@ -295,7 +297,9 @@ function grootstePopulaties(){
 	
 	try{
 		
-		$.getJSON("http://localhost:8070/firstapp/restservices/countries/largestpopulations","jsonp" ,function(data){			
+		/*http://localhost:8070
+*/				
+		$.getJSON("/firstapp/restservices/countries/largestpopulations","jsonp" ,function(data){			
 			$.each(data, function(k, v){
 				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
@@ -337,7 +341,10 @@ function randomSearch(){
 		console.log("zoek: "+ zoek);
 		
 		
-		$.getJSON("http://localhost:8070/firstapp/restservices/countries/random/" + zoek ,+"jsonp" ,function(data){
+		/*http://localhost:8070
+*/		
+		
+		$.getJSON("/firstapp/restservices/countries/random/" + zoek ,+"jsonp" ,function(data){
 			
 			//niks gevonden?
 			if(data.length == 0){
