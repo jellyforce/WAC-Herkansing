@@ -121,7 +121,7 @@ function landOphalen(code){
 			document.getElementById("input-latitude").value = data.latitude;
 			document.getElementById("input-longtitude").value = data.longitude;
 			document.getElementById("land-invoer-header").append(data.name);
-			document.getElementById('hidden-code').value = data.code2;
+			document.getElementById("hidden-code").value = data.code2;
 			
 			
 			//alvast instellen dat als je op een land klikt dat ook de wijzig en delete knop
@@ -513,7 +513,6 @@ function createCountry(){
 
 
 function adjustCountry(){
-alert("aanpassen");
 
 	//haal de code op van het land
 	var landcode = $("#input-landcode-lang").val();
@@ -628,13 +627,16 @@ alert("aanpassen");
 				$.ajax("/firstapp/restservices/countries/"+lang,{
 					type: "put",
 					data: JSONdata,
-					succes: function(response){
-						
+					success: function(response){
+						randomSearch();
+						$('#land-pagina').hide();
+						$('#search').fadeIn(1000);
 						messageWindow("Response:" + response.response, "green");
+
 
 					},
 					error: function(response){
-						messageWindow("Response AJAX-Call:" + response.response, "red");
+						messageWindow("Response AJAX POST: " + response.response, "red");
 					}
 				});
 			}			
@@ -654,10 +656,9 @@ alert("aanpassen");
 
 	
 function removeCountry(){
-	alert("verwijderen");
 	
 	//haal de code op van het land
-	var landcode = $("#input-landcode-kort").val();
+	var landcode = $("#input-landcode-lang").val();
 	console.log(landcode);
 	
 	//ook de hidden-field met landcode 
@@ -672,6 +673,29 @@ function removeCountry(){
 	}
 	else{// verwijder het land uit de database
 		
+		try{
+			$.ajax("/firstapp/restservices/countries/"+landcode,{
+				type: "delete",
+				success: function(response){
+					randomSearch();
+					$('#land-pagina').hide();
+					$('#search').fadeIn(1000);
+					messageWindow("Response:" + response.response, "green");
+
+
+				},
+				error: function(response){
+					messageWindow("Response AJAX DELETE: " + response.response, "red");
+				}
+			});
+		}
+		catch(err){
+			randomSearch();
+			$('#land-pagina').hide();
+			$('#search').fadeIn(1000);
+			messageWindow("Server fout: " + response.response, "red");
+
+		}
 	}
 }
 	

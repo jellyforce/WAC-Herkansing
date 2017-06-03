@@ -67,48 +67,7 @@ public class CountryDAO extends BaseDAO {
 
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-/*===============================  
-	Verwijderen Land
-===============================
-*/
-  
-  
-  public boolean delete(String code){
-	  boolean result = false;
-	  boolean countryExists = findByCode(code) != null;
-	  
-	  if(countryExists){
-		  String query = "DELETE FROM country WHERE code =" + code;
-		  
-		  try (Connection con = getConnection()) {
-			  
-			  Statement stmt = con.createStatement();
-			  if(stmt.executeUpdate(query) == 1) {
-				  result = true;
-			  }
-		  } catch (SQLException sqle) {
-			  sqle.printStackTrace();
-		  }
-	  }
-	  return result;
-  }
-
-  
-  
-  
-  
-  
-  
-  
+ 
   
   
   
@@ -178,6 +137,35 @@ public void Adjust(Country c) {
 		}
 	}
 	
+
+
+
+
+/*===============================  
+	Verwijderen Land
+===============================
+*/
+
+
+public boolean delete(String code){
+	  boolean result = false;
+
+		  String query = "DELETE FROM country WHERE code ='" + code+"'";
+		  
+		  try (Connection con = getConnection()) {
+			  
+			  Statement stmt = con.createStatement();
+			  if(stmt.executeUpdate(query) == 1) {
+				  result = true;
+			  }
+		  } catch (SQLException sqle) {
+			  sqle.printStackTrace();
+		  }
+	    return result;
+}
+
+
+
 
 
 

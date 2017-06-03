@@ -7,6 +7,7 @@ import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -180,9 +181,44 @@ public class WorldResource {
 	    return job.build().toString();
 	  }
 
+/*=======================================
+	Land Verwijderen 						===> DELETE
+=========================================
+*/	
 
-	
-	
+	@DELETE
+	@Path("{code}")
+	@Produces("application/json")
+	public String deleteCountry(@PathParam("code") String code) {
+		WorldService service = ServiceProvider.getWorldService();
+
+		JsonObjectBuilder job = Json.createObjectBuilder();
+		String response = "";
+		
+		try{
+			if(service.deleteCountry(code)){
+				service.deleteCountry(code);
+			    response = "Het land met code: "+code+" is verwijderd!";
+			    job.add("response", response );	
+			}
+			else{
+				response ="Het land dat je probeert te verwijderen bestaat niet";
+				job.add("response", response);
+			}
+			
+
+		}
+		catch(Error e){
+			response = "Er is wat fout gegaan met het verwijderen: "+e.toString();
+		    job.add("response", response );	
+		}
+		
+		
+		
+
+
+		return job.build().toString();
+	}	
 	
 	
 
