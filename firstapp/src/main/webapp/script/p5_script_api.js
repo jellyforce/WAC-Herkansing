@@ -266,7 +266,7 @@ function loadCountries(){
 	console.log("-21- loadCounties functie gestart");	
 	
 	//receive information from own Country-API
-	$.getJSON("http://localhost:8070/firstapp/restservices/countries","jsonp" ,function(data){
+	$.getJSON("/restservices/countries","jsonp" ,function(data){
 
 		console.log("-22- data is opgehaald uit de api");
 		//for each piece of data in the JSON-object create a table row which holds its data and append it to the " HTML-variable "
