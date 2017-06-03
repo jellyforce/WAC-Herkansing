@@ -127,9 +127,9 @@ function clearTable(){
 function landOphalen(code){
 		
 		try{
-			/*http://localhost:8070*/	
-	
-		$.getJSON("/firstapp/restservices/countries/"+code,+"jsonp" ,function(data){			
+			/*http://localhost:8070firstapp	
+	*/
+		$.getJSON("/restservices/countries/"+code,+"jsonp" ,function(data){			
 
 			console.log(data);
 		// vullen van de section met id="land-pagina"
@@ -195,9 +195,9 @@ function alleLanden(){
 	
 	
 	try{
-		/*http://localhost:8070
+		/*http://localhost:8070/firstapp
 */		
-		$.getJSON("/firstapp/restservices/countries","jsonp" ,function(data){			
+		$.getJSON("/restservices/countries","jsonp" ,function(data){			
 			$.each(data, function(k, v){
 				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
@@ -251,9 +251,9 @@ function grootsteOppervlaktes(){
 	
 	try{
 		
-		/*http://localhost:8070
+		/*http://localhost:8070/firstapp
 */		
-		$.getJSON("/firstapp/restservices/countries/largestsurfaces","jsonp" ,function(data){			
+		$.getJSON("/restservices/countries/largestsurfaces","jsonp" ,function(data){			
 			$.each(data, function(k, v){
 				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
@@ -297,9 +297,9 @@ function grootstePopulaties(){
 	
 	try{
 		
-		/*http://localhost:8070
+		/*http://localhost:8070/firstapp
 */				
-		$.getJSON("/firstapp/restservices/countries/largestpopulations","jsonp" ,function(data){			
+		$.getJSON("/restservices/countries/largestpopulations","jsonp" ,function(data){			
 			$.each(data, function(k, v){
 				$('tbody').append("<tr onclick= 'landOphalen(\"" + v.code2 + "\");'><td><div>"+v.Land+"</div></td><td><div>"+v.code+"</div></td><td><div>"+v.capital+"</div></td><td><div>"+v.continent+"</div></td><td><div>"+v.region+"</div></td><td><div>"+v.surface+"</div></td><td><div>"+v.population+"</div></td><td><div>"+v.government+"</div></td><td><div>"+v.latitude+"</div></td><td><div>"+v.longitude+"</div></td></tr>");
 			});
@@ -344,7 +344,7 @@ function randomSearch(){
 		/*http://localhost:8070
 */		
 		
-		$.getJSON("/firstapp/restservices/countries/random/" + zoek ,+"jsonp" ,function(data){
+		$.getJSON("/restservices/countries/random/" + zoek ,+"jsonp" ,function(data){
 			
 			//niks gevonden?
 			if(data.length == 0){
@@ -504,7 +504,7 @@ function createCountry(){
 			
 			
 			
-			$.ajax("/firstapp/restservices/countries/"+kort,{
+			$.ajax("/restservices/countries/"+kort,{
 				type: "post",
 				data: JSONdata,
 			    beforeSend: function (xhr) { // je moet ingelogged zijn om het te mogen uitvoeren (token ophalen)
@@ -654,7 +654,7 @@ function adjustCountry(){
 				var JSONdata = JSON.stringify(data);
 				
 			
-				$.ajax("/firstapp/restservices/countries/"+lang,{
+				$.ajax("/restservices/countries/"+lang,{
 					type: "put",
 					data: JSONdata,
 				    beforeSend: function (xhr) { // je moet ingelogged zijn om het te mogen uitvoeren (token ophalen)
@@ -692,6 +692,9 @@ function adjustCountry(){
 	
 function removeCountry(){
 	
+	/*http://localhost:8070/firstapp
+	*/
+	
 	//haal de code op van het land
 	var landcode = $("#input-landcode-lang").val();
 	console.log(landcode);
@@ -709,7 +712,7 @@ function removeCountry(){
 	else{// verwijder het land uit de database
 		
 		try{
-			$.ajax("/firstapp/restservices/countries/"+landcode,{
+			$.ajax("/restservices/countries/"+landcode,{
 				type: "delete",
 				beforeSend: function (xhr) { // je moet ingelogged zijn om het te mogen uitvoeren (token ophalen)
 			        var token = window.sessionStorage.getItem("sessionToken");
@@ -752,10 +755,10 @@ function removeCountry(){
 
 function userLogin(){
 	
-	
-
+	/*http://localhost:8070/firstapp
+*/
 		var data = $('#login-form').serialize();
-		$.post("/firstapp/restservices/authentication", data, function(response){
+		$.post("/restservices/authentication", data, function(response){
 			window.sessionStorage.setItem("sessionToken", response);	
 
 				$('#login').hide();
