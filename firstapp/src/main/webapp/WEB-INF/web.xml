@@ -38,6 +38,17 @@
 	  </servlet-mapping>
   
   
+  <!--  homepage -->
+  
+  	<welcome-file-list>
+        <welcome-file>8_1_Country_Management.html</welcome-file>
+    </welcome-file-list>
+  
+  
+  
+  
+  
+  
   
   <!-- Error Page -->  
   

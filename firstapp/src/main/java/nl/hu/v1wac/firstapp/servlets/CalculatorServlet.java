@@ -59,6 +59,8 @@ public class CalculatorServlet extends HttpServlet{
 		out.println("  <body>");
 		out.println("    <h2>Prachtige calculator</h2>");
 		out.println("    <h1>Het antwoord van: "+num_1 +" "+ operator + " "+ num_2 +  " = " + antwoord + "!</h1>");
+		out.println("      <a href='2_5_calculator.html'>Ga terug naar de rekenmachine</a><br/><br/>   ");
+		out.println("      <a href='5_5_index.html'>Ga terug naar het overzicht</a>   ");
 		out.println("  </body>");
 		out.println("</html>");
 

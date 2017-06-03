@@ -85,6 +85,15 @@ function closeCountryPage(){
 	$('#search').fadeIn(1000);
 }
 
+function otherServices(){
+    var url = "5_5_index.html";
+    window.location.href = url;
+}
+
+
+
+
+
 function messageWindow(message, color){
 	
 	var messageboxText = document.getElementById('messagebox-text');
